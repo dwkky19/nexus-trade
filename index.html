@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NexusTrade PRO v4 — IDX Intelligence 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=Clash+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>NexusTrade PRO v5 — IDX Intelligence 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#020409;--bg2:#050a12;--bg3:#080f1c;--surf:#0b1524;--surf2:#0f1d2e;--surf3:#162338;
@@ -26,39 +26,25 @@ body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--txt
 ::-webkit-scrollbar{width:3px;height:3px;}
 ::-webkit-scrollbar-track{background:transparent;}
 ::-webkit-scrollbar-thumb{background:var(--surf3);border-radius:2px;}
-
-/* GRID BG */
 body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background-image:
-    linear-gradient(rgba(56,189,248,0.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(56,189,248,0.025) 1px,transparent 1px);
+  background-image:linear-gradient(rgba(56,189,248,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(56,189,248,0.025) 1px,transparent 1px);
   background-size:48px 48px;}
 body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
-  background:
-    radial-gradient(ellipse 60% 35% at 20% -5%,rgba(59,130,246,0.08),transparent),
-    radial-gradient(ellipse 40% 25% at 80% 105%,rgba(99,102,241,0.06),transparent);}
+  background:radial-gradient(ellipse 60% 35% at 20% -5%,rgba(59,130,246,0.08),transparent),radial-gradient(ellipse 40% 25% at 80% 105%,rgba(99,102,241,0.06),transparent);}
 
 /* NAV */
-#nav{position:fixed;top:0;left:0;right:0;height:52px;z-index:300;
-  display:flex;align-items:center;gap:10px;padding:0 14px;
-  background:rgba(2,4,9,0.97);backdrop-filter:blur(24px);
-  border-bottom:1px solid var(--b1);}
+#nav{position:fixed;top:0;left:0;right:0;height:52px;z-index:300;display:flex;align-items:center;gap:10px;padding:0 14px;
+  background:rgba(2,4,9,0.97);backdrop-filter:blur(24px);border-bottom:1px solid var(--b1);}
 .logo{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:15px;letter-spacing:-0.5px;flex-shrink:0;
   background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 .logo-sub{font-size:8px;font-family:'JetBrains Mono',monospace;background:none;-webkit-text-fill-color:var(--txt3);font-weight:400;margin-left:4px;}
 .ndiv{width:1px;height:16px;background:var(--b2);flex-shrink:0;}
 .nav-tabs{display:flex;gap:1px;}
-.nav-tab{padding:5px 11px;border:none;background:transparent;color:var(--txt2);
-  font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:500;cursor:pointer;
-  border-radius:5px;transition:all .15s;}
+.nav-tab{padding:5px 11px;border:none;background:transparent;color:var(--txt2);font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:500;cursor:pointer;border-radius:5px;transition:all .15s;}
 .nav-tab:hover{color:var(--txt);background:var(--b1);}
 .nav-tab.active{color:var(--cyan);background:var(--gcyan);font-weight:600;}
 .nav-r{margin-left:auto;display:flex;align-items:center;gap:7px;}
-
-/* STATUS BADGES */
-.mkt-badge{display:flex;align-items:center;gap:5px;padding:4px 9px;
-  background:var(--surf);border:1px solid var(--b1);border-radius:6px;
-  font-size:9.5px;font-family:'JetBrains Mono',monospace;}
+.mkt-badge{display:flex;align-items:center;gap:5px;padding:4px 9px;background:var(--surf);border:1px solid var(--b1);border-radius:6px;font-size:9.5px;font-family:'JetBrains Mono',monospace;}
 .mkt-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
 .mkt-dot.open{background:var(--green);box-shadow:0 0 6px var(--green);animation:pulse 2s ease-in-out infinite;}
 .mkt-dot.closed{background:var(--orange);}
@@ -66,41 +52,31 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .mkt-lbl.open{color:var(--green);font-weight:600;}
 .mkt-lbl.closed{color:var(--orange);font-weight:600;}
 .mkt-time{color:var(--txt3);font-size:8.5px;}
-.ihsg-pill{display:flex;align-items:center;gap:5px;padding:4px 9px;
-  background:var(--surf);border:1px solid var(--b1);border-radius:6px;
-  font-family:'JetBrains Mono',monospace;font-size:11px;}
+.ihsg-pill{display:flex;align-items:center;gap:5px;padding:4px 9px;background:var(--surf);border:1px solid var(--b1);border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:11px;}
 .btn-sm{padding:4px 11px;border-radius:5px;font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;cursor:pointer;transition:all .15s;border:none;}
 .btn-o{background:transparent;border:1px solid var(--b2);color:var(--txt2);}
 .btn-o:hover{border-color:var(--cyan);color:var(--cyan);}
 .btn-primary{background:var(--grad1);color:#fff;font-weight:700;}
 .btn-primary:hover{opacity:.85;transform:translateY(-1px);}
-.btn-danger{background:var(--gred);border:1px solid rgba(239,68,68,0.3);color:var(--red);}
-.live-btn{display:flex;align-items:center;gap:5px;padding:4px 9px;
-  background:var(--surf);border:1px solid var(--b1);border-radius:5px;
-  color:var(--txt2);cursor:pointer;font-size:10px;font-family:'JetBrains Mono',monospace;transition:all .15s;}
+.live-btn{display:flex;align-items:center;gap:5px;padding:4px 9px;background:var(--surf);border:1px solid var(--b1);border-radius:5px;color:var(--txt2);cursor:pointer;font-size:10px;font-family:'JetBrains Mono',monospace;transition:all .15s;}
 .live-btn:hover{border-color:var(--cyan);color:var(--cyan);}
 .live-btn.loading .spin{animation:spin .7s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg)}}
 .spin{display:inline-block;}
 
 /* LAYOUT */
-#app{position:fixed;top:52px;left:0;right:0;bottom:0;display:grid;
-  grid-template-columns:192px 1fr 256px;z-index:1;}
+#app{position:fixed;top:52px;left:0;right:0;bottom:0;display:grid;grid-template-columns:192px 1fr 256px;z-index:1;}
 
 /* SIDEBAR */
 #sidebar{background:var(--bg2);border-right:1px solid var(--b1);overflow-y:auto;padding:6px 0;}
 .sb-grp{margin-bottom:4px;}
-.sb-lbl{font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:600;color:var(--txt3);
-  letter-spacing:2px;text-transform:uppercase;padding:9px 12px 3px;}
-.sb-it{display:flex;align-items:center;gap:7px;padding:7px 12px;cursor:pointer;
-  color:var(--txt2);font-size:11.5px;font-weight:500;border-left:2px solid transparent;transition:all .12s;}
+.sb-lbl{font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:600;color:var(--txt3);letter-spacing:2px;text-transform:uppercase;padding:9px 12px 3px;}
+.sb-it{display:flex;align-items:center;gap:7px;padding:7px 12px;cursor:pointer;color:var(--txt2);font-size:11.5px;font-weight:500;border-left:2px solid transparent;transition:all .12s;}
 .sb-it:hover{background:var(--surf);color:var(--txt);}
-.sb-it.active{background:linear-gradient(90deg,rgba(56,189,248,0.08),transparent);
-  color:var(--cyan);border-left-color:var(--cyan);}
+.sb-it.active{background:linear-gradient(90deg,rgba(56,189,248,0.08),transparent);color:var(--cyan);border-left-color:var(--cyan);}
 .sb-it svg{width:12px;height:12px;flex-shrink:0;opacity:.6;}
 .sb-it.active svg{opacity:1;}
-.sb-badge{margin-left:auto;font-size:8px;font-weight:700;padding:1px 5px;border-radius:10px;
-  background:var(--green);color:#000;font-family:'JetBrains Mono',monospace;}
+.sb-badge{margin-left:auto;font-size:8px;font-weight:700;padding:1px 5px;border-radius:10px;background:var(--green);color:#000;font-family:'JetBrains Mono',monospace;}
 .sb-badge.red{background:var(--red);color:#fff;}
 .sb-badge.gold{background:var(--gold);color:#000;}
 .sb-badge.blue{background:var(--indigo);color:#fff;}
@@ -114,89 +90,110 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 /* RIGHT PANEL */
 #rpanel{background:var(--bg2);border-left:1px solid var(--b1);overflow-y:auto;display:flex;flex-direction:column;}
 .rp-sec{padding:10px 12px;border-bottom:1px solid var(--b1);}
-.rp-ttl{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10px;color:var(--txt);
-  letter-spacing:.5px;text-transform:uppercase;margin-bottom:7px;display:flex;align-items:center;justify-content:space-between;}
+.rp-ttl{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10px;color:var(--txt);letter-spacing:.5px;text-transform:uppercase;margin-bottom:7px;display:flex;align-items:center;justify-content:space-between;}
 .rp-ttl small{font-weight:400;color:var(--txt3);font-size:8px;letter-spacing:0;}
 
 /* CARDS */
 .card{background:var(--surf);border:1px solid var(--b1);border-radius:8px;padding:11px;}
 .card:hover{border-color:var(--b2);}
-.card-title{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:var(--txt);
-  margin-bottom:9px;display:flex;align-items:center;gap:6px;}
+.card-title{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:var(--txt);margin-bottom:9px;display:flex;align-items:center;gap:6px;}
+
+/* NEWS TICKER */
+.news-ticker-wrap{background:rgba(56,189,248,0.04);border:1px solid var(--b1);border-radius:6px;padding:6px 10px;overflow:hidden;position:relative;}
+.news-ticker{display:flex;gap:0;width:max-content;animation:ticker 35s linear infinite;}
+.news-ticker:hover{animation-play-state:paused;}
+.news-ticker-item{white-space:nowrap;font-size:10px;color:var(--txt2);padding:0 18px;display:flex;align-items:center;gap:6px;}
+.news-ticker-item::before{content:'●';font-size:6px;color:var(--cyan);}
+.news-ticker-item.bull{color:var(--green);}
+.news-ticker-item.bear{color:var(--red);}
+.ticker-lbl{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--cyan);font-weight:700;letter-spacing:1px;margin-right:8px;flex-shrink:0;}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 /* TOP BAR */
 .sec-topbar{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
 .sym-pills{display:flex;gap:3px;flex-wrap:wrap;}
-.sym-pill{padding:4px 9px;background:var(--surf);border:1px solid var(--b1);border-radius:4px;
-  color:var(--txt2);font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;
-  cursor:pointer;transition:all .12s;}
+.sym-pill{padding:4px 9px;background:var(--surf);border:1px solid var(--b1);border-radius:4px;color:var(--txt2);font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:500;cursor:pointer;transition:all .12s;}
 .sym-pill:hover{border-color:var(--b2);color:var(--txt);}
 .sym-pill.active{background:var(--gcyan);border-color:var(--cyan);color:var(--cyan);}
 .tf-pills{display:flex;gap:2px;margin-left:auto;}
-.tf-pill{padding:3px 7px;background:transparent;border:1px solid var(--b1);border-radius:3px;
-  color:var(--txt3);font-family:'JetBrains Mono',monospace;font-size:9.5px;cursor:pointer;transition:all .12s;}
+.tf-pill{padding:3px 7px;background:transparent;border:1px solid var(--b1);border-radius:3px;color:var(--txt3);font-family:'JetBrains Mono',monospace;font-size:9.5px;cursor:pointer;transition:all .12s;}
 .tf-pill:hover{color:var(--txt2);}
 .tf-pill.active{background:var(--surf2);border-color:var(--indigo);color:var(--cyan);}
 
-/* PRICE HEADER */
-.price-hdr{display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
-.ph-main{display:flex;flex-direction:column;}
-.ph-sym{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--txt3);letter-spacing:1.5px;text-transform:uppercase;}
-.ph-price{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:700;color:var(--txt);line-height:1;margin:2px 0;}
-.ph-chg{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;}
-.ph-chg.up{color:var(--green)}.ph-chg.dn{color:var(--red)}
+/* ══════════════════════════════════
+   COMBINED DASHBOARD + AI PANEL
+══════════════════════════════════ */
+
+/* PRICE HEADER — Enhanced TradingView style */
+.price-hdr-pro{display:flex;flex-direction:column;gap:0;background:var(--surf);border:1px solid var(--b1);border-radius:8px;overflow:hidden;}
+.ph-top-bar{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--b1);background:rgba(56,189,248,0.02);}
+.ph-left{display:flex;align-items:center;gap:12px;}
+.ph-sym-block{display:flex;flex-direction:column;}
+.ph-sym-name{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--txt3);letter-spacing:1.5px;text-transform:uppercase;}
+.ph-company{font-size:9px;color:var(--txt3);}
+.ph-price-big{font-family:'JetBrains Mono',monospace;font-size:28px;font-weight:700;color:var(--txt);line-height:1;}
+.ph-chg-row{display:flex;align-items:center;gap:8px;margin-top:3px;}
+.ph-chg-badge{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;padding:2px 8px;border-radius:4px;}
+.ph-chg-badge.up{background:rgba(34,197,94,0.15);color:var(--green);border:1px solid rgba(34,197,94,0.25);}
+.ph-chg-badge.dn{background:rgba(239,68,68,0.12);color:var(--red);border:1px solid rgba(239,68,68,0.22);}
+.ph-ohlcv{display:flex;gap:16px;padding:8px 14px;flex-wrap:wrap;}
 .ph-stat{display:flex;flex-direction:column;gap:1px;}
-.ph-slbl{font-size:8px;color:var(--txt3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.5px;}
-.ph-sval{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;}
-.data-pill{display:flex;align-items:center;gap:4px;padding:3px 7px;
-  border-radius:4px;font-size:8.5px;font-family:'JetBrains Mono',monospace;}
+.ph-slbl{font-size:7.5px;color:var(--txt3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.5px;}
+.ph-sval{font-family:'JetBrains Mono',monospace;font-size:11.5px;font-weight:600;}
+.data-pill{display:flex;align-items:center;gap:4px;padding:3px 7px;border-radius:4px;font-size:8.5px;font-family:'JetBrains Mono',monospace;}
 .data-pill.live{background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.25);color:var(--green);}
 .data-pill.sim{background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.25);color:var(--gold);}
 .data-pill .dot{width:4px;height:4px;border-radius:50%;background:currentColor;}
+
+/* TRADINGVIEW-STYLE CHART HEADER */
+.chart-container{background:var(--surf);border:1px solid var(--b1);border-radius:8px;overflow:hidden;}
+.chart-header{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-bottom:1px solid var(--b1);background:rgba(0,0,0,0.2);}
+.chart-ohlc-row{display:flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:10px;}
+.chart-ohlc-item{display:flex;align-items:center;gap:3px;}
+.chart-ohlc-lbl{color:var(--txt3);font-size:8.5px;}
+.chart-ohlc-val{font-size:10px;font-weight:600;}
+.chart-ind-row{display:flex;gap:3px;}
+.ind-tog{padding:2px 6px;border-radius:3px;background:rgba(0,0,0,0.4);border:1px solid var(--b1);color:var(--txt2);font-size:8.5px;font-family:'JetBrains Mono',monospace;cursor:pointer;transition:all .12s;}
+.ind-tog.on{border-color:var(--cyan);color:var(--cyan);}
+.chart-date-row{display:flex;align-items:center;gap:8px;padding:4px 12px 6px;border-top:1px solid var(--b1);background:rgba(0,0,0,0.15);}
+.chart-date-info{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--txt3);}
+.chart-cursor-info{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--cyan);}
 .mkt-closed-ov{position:absolute;inset:0;background:rgba(2,4,9,0.45);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px);z-index:10;pointer-events:none;}
 .mkt-closed-badge{background:rgba(2,4,9,0.92);border:1px solid var(--orange);border-radius:5px;padding:6px 13px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--orange);}
 
-/* CHART */
-.chart-wrap{position:relative;background:var(--surf);border:1px solid var(--b1);border-radius:8px;overflow:hidden;}
-.chart-ov{position:absolute;top:7px;left:7px;display:flex;gap:4px;z-index:5;}
-.ind-tog{padding:2px 5px;border-radius:3px;background:rgba(0,0,0,0.55);border:1px solid var(--b1);
-  color:var(--txt2);font-size:8.5px;font-family:'JetBrains Mono',monospace;cursor:pointer;transition:all .12s;backdrop-filter:blur(4px);}
-.ind-tog.on{border-color:var(--cyan);color:var(--cyan);}
-#mainCanvas,#analyticsCanvas{display:block;width:100%;}
-
-/* AI CARD */
-.ai-card{background:linear-gradient(135deg,rgba(56,189,248,0.05),rgba(99,102,241,0.05));
-  border:1px solid rgba(56,189,248,0.15);border-radius:8px;padding:12px 14px;
-  display:flex;align-items:flex-start;gap:12px;position:relative;overflow:hidden;}
-.ai-card::before{content:'';position:absolute;top:-30%;right:-5%;width:180px;height:180px;
-  background:radial-gradient(circle,rgba(56,189,248,0.04),transparent 70%);pointer-events:none;}
-.ai-orb{width:38px;height:38px;border-radius:10px;flex-shrink:0;
-  background:linear-gradient(135deg,rgba(56,189,248,0.15),rgba(99,102,241,0.15));
-  border:1px solid rgba(56,189,248,0.25);display:flex;align-items:center;justify-content:center;font-size:16px;}
+/* AI SIGNAL PANEL — ENHANCED */
+.ai-panel-pro{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.ai-main-card{background:linear-gradient(135deg,rgba(56,189,248,0.06),rgba(99,102,241,0.06));border:1px solid rgba(56,189,248,0.18);border-radius:8px;padding:12px 14px;display:flex;gap:12px;position:relative;overflow:hidden;grid-column:span 2;}
+.ai-main-card::before{content:'';position:absolute;top:-30%;right:-5%;width:200px;height:200px;background:radial-gradient(circle,rgba(56,189,248,0.05),transparent 70%);pointer-events:none;}
+.ai-orb{width:42px;height:42px;border-radius:10px;flex-shrink:0;background:linear-gradient(135deg,rgba(56,189,248,0.15),rgba(99,102,241,0.15));border:1px solid rgba(56,189,248,0.3);display:flex;align-items:center;justify-content:center;font-size:18px;}
 .ai-body{flex:1;min-width:0;}
 .ai-title{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;color:var(--cyan);margin-bottom:3px;}
-.ai-desc{font-size:10.5px;color:var(--txt2);line-height:1.6;}
+.ai-desc{font-size:10px;color:var(--txt2);line-height:1.6;}
 .ai-tags{display:flex;gap:5px;margin-top:7px;flex-wrap:wrap;}
-.ai-tag{background:var(--bg3);border:1px solid var(--b1);border-radius:4px;padding:3px 7px;font-size:9px;font-family:'JetBrains Mono',monospace;}
+.ai-tag{background:var(--bg3);border:1px solid var(--b1);border-radius:4px;padding:2px 6px;font-size:8.5px;font-family:'JetBrains Mono',monospace;}
 .ai-tag.g{color:var(--green);border-color:rgba(34,197,94,0.2);}
 .ai-tag.r{color:var(--red);border-color:rgba(239,68,68,0.2);}
 .ai-tag.b{color:var(--cyan);border-color:rgba(56,189,248,0.2);}
 .ai-tag.y{color:var(--gold);border-color:rgba(245,158,11,0.2);}
 .ai-tag.p{color:var(--purple);border-color:rgba(167,139,250,0.2);}
 .ai-right{display:flex;flex-direction:column;align-items:center;gap:5px;flex-shrink:0;}
-.conf-ring-wrap{position:relative;width:58px;height:58px;}
+.conf-ring-wrap{position:relative;width:62px;height:62px;}
 .conf-ring-wrap svg{transform:rotate(-90deg);}
 .conf-ring-bg{fill:none;stroke:rgba(255,255,255,0.04);stroke-width:5;}
 .conf-ring-fill{fill:none;stroke-width:5;stroke-linecap:round;transition:stroke-dashoffset 1.4s cubic-bezier(.25,.46,.45,.94),stroke .4s;}
-.conf-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;}
+.conf-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;}
 .conf-lbl{font-size:7.5px;color:var(--txt3);font-family:'JetBrains Mono',monospace;letter-spacing:.8px;text-transform:uppercase;}
-.ai-signal-badge{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;
-  padding:2px 8px;border-radius:4px;text-align:center;}
+.ai-signal-badge{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;padding:3px 10px;border-radius:4px;text-align:center;}
 .ai-signal-badge.buy{background:rgba(34,197,94,0.15);color:var(--green);border:1px solid rgba(34,197,94,0.3);}
 .ai-signal-badge.sell{background:rgba(239,68,68,0.15);color:var(--red);border:1px solid rgba(239,68,68,0.3);}
 .ai-signal-badge.hold{background:rgba(245,158,11,0.12);color:var(--gold);border:1px solid rgba(245,158,11,0.3);}
 .ai-signal-badge.spec{background:rgba(167,139,250,0.12);color:var(--purple);border:1px solid rgba(167,139,250,0.3);}
+
+/* TARGET PRICE CARDS */
+.target-card{background:var(--bg3);border:1px solid var(--b1);border-radius:6px;padding:9px 11px;}
+.target-card .tc-lbl{font-size:7.5px;color:var(--txt3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px;}
+.target-card .tc-val{font-family:'JetBrains Mono',monospace;font-size:15px;font-weight:700;}
+.target-card .tc-sub{font-size:8px;color:var(--txt3);margin-top:2px;}
 
 /* INDICATORS */
 .ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
@@ -218,18 +215,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 .ind-fill.p{background:linear-gradient(90deg,#4c1d95,var(--purple));}
 .ind-extra{font-size:8px;color:var(--txt3);font-family:'JetBrains Mono',monospace;}
 
-/* NEWS TICKER */
-.news-ticker-wrap{background:rgba(56,189,248,0.04);border:1px solid var(--b1);border-radius:6px;padding:6px 10px;overflow:hidden;position:relative;}
-.news-ticker{display:flex;gap:0;width:max-content;animation:ticker 35s linear infinite;}
-.news-ticker:hover{animation-play-state:paused;}
-.news-ticker-item{white-space:nowrap;font-size:10px;color:var(--txt2);padding:0 18px;display:flex;align-items:center;gap:6px;}
-.news-ticker-item::before{content:'●';font-size:6px;color:var(--cyan);}
-.news-ticker-item.bull{color:var(--green);}
-.news-ticker-item.bear{color:var(--red);}
-.ticker-lbl{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--cyan);font-weight:700;letter-spacing:1px;margin-right:8px;flex-shrink:0;}
-@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* FORMULA */
+/* FUNDAMENTAL */
 .formula-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:7px;}
 .formula-card{background:var(--bg3);border:1px solid var(--b1);border-radius:5px;padding:8px 10px;transition:border-color .15s;}
 .formula-card:hover{border-color:var(--b2);}
@@ -240,15 +226,13 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:0;
 /* ORDER */
 .order-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .order-tabs{display:flex;gap:2px;background:var(--bg3);padding:2px;border-radius:5px;margin-bottom:10px;}
-.otab{flex:1;padding:6px;border:none;background:transparent;color:var(--txt2);
-  font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;border-radius:4px;cursor:pointer;transition:all .15s;}
+.otab{flex:1;padding:6px;border:none;background:transparent;color:var(--txt2);font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:700;border-radius:4px;cursor:pointer;transition:all .15s;}
 .otab.buy.active{background:rgba(34,197,94,0.12);color:var(--green);}
 .otab.sell.active{background:rgba(239,68,68,0.12);color:var(--red);}
 .fg{margin-bottom:8px;}
 .flbl{font-size:8.5px;color:var(--txt3);font-family:'JetBrains Mono',monospace;letter-spacing:.3px;margin-bottom:3px;display:flex;justify-content:space-between;align-items:center;}
 .flbl span{color:var(--cyan);}
-.finput{width:100%;background:var(--bg3);border:1px solid var(--b1);border-radius:4px;
-  padding:6px 9px;color:var(--txt);font-family:'JetBrains Mono',monospace;font-size:11.5px;outline:none;transition:border-color .15s;}
+.finput{width:100%;background:var(--bg3);border:1px solid var(--b1);border-radius:4px;padding:6px 9px;color:var(--txt);font-family:'JetBrains Mono',monospace;font-size:11.5px;outline:none;transition:border-color .15s;}
 .finput:focus{border-color:var(--indigo);}
 select.finput{cursor:pointer;}
 .ig{position:relative;}
@@ -259,8 +243,7 @@ select.finput{cursor:pointer;}
 .rlbl{color:var(--txt3);font-family:'JetBrains Mono',monospace;font-size:9px;}
 .rval{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:600;}
 .rval.g{color:var(--green)}.rval.r{color:var(--red)}.rval.y{color:var(--gold)}.rval.b{color:var(--cyan)}.rval.p{color:var(--purple)}
-.exec-btn{width:100%;padding:10px;border:none;border-radius:5px;font-family:'Space Grotesk',sans-serif;
-  font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.5px;transition:all .15s;}
+.exec-btn{width:100%;padding:10px;border:none;border-radius:5px;font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.5px;transition:all .15s;}
 .exec-btn.buy{background:linear-gradient(130deg,var(--green2),var(--green));color:#000;}
 .exec-btn.sell{background:linear-gradient(130deg,var(--red2),var(--red));color:#fff;}
 .exec-btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.6);}
@@ -280,8 +263,7 @@ select.finput{cursor:pointer;}
 .wchg.up{color:var(--green)}.wchg.dn{color:var(--red)}
 
 /* PORTFOLIO */
-.port-sum{background:linear-gradient(135deg,rgba(34,197,94,0.06),rgba(56,189,248,0.04));
-  border:1px solid rgba(34,197,94,0.12);border-radius:6px;padding:10px;margin-bottom:8px;}
+.port-sum{background:linear-gradient(135deg,rgba(34,197,94,0.06),rgba(56,189,248,0.04));border:1px solid rgba(34,197,94,0.12);border-radius:6px;padding:10px;margin-bottom:8px;}
 .perf-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;}
 .perf-card{background:var(--surf);border:1px solid var(--b1);border-radius:6px;padding:9px;}
 .perf-lbl{font-size:8.5px;color:var(--txt3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px;}
@@ -293,6 +275,11 @@ select.finput{cursor:pointer;}
 .pos-pnl{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;}
 .pos-pnl.up{color:var(--green)}.pos-pnl.dn{color:var(--red)}
 .pos-pct{font-size:8px;opacity:.7;text-align:right;}
+.alloc-bar{display:flex;height:5px;border-radius:3px;overflow:hidden;margin-bottom:5px;}
+.alloc-seg{height:100%;transition:width .7s ease;}
+.alloc-legend{display:flex;flex-wrap:wrap;gap:6px;}
+.alloc-leg-item{display:flex;align-items:center;gap:4px;font-size:9.5px;color:var(--txt2);}
+.alloc-dot{width:6px;height:6px;border-radius:2px;flex-shrink:0;}
 
 /* NEWS */
 .news-item{padding:6px 0;border-bottom:1px solid var(--b1);}
@@ -321,20 +308,15 @@ tr:hover td{background:var(--surf2);}
 .tbl-sig.hold{background:var(--ggold);color:var(--gold);}
 .tbl-sig.strong_buy{background:rgba(34,197,94,0.2);color:#4ade80;border:1px solid rgba(34,197,94,0.3);}
 .filter-row{display:flex;gap:5px;align-items:center;flex-wrap:wrap;}
-.filter-input,.filter-sel{padding:5px 8px;background:var(--surf);border:1px solid var(--b1);border-radius:4px;
-  color:var(--txt);font-family:'JetBrains Mono',monospace;font-size:10.5px;outline:none;}
+.filter-input,.filter-sel{padding:5px 8px;background:var(--surf);border:1px solid var(--b1);border-radius:4px;color:var(--txt);font-family:'JetBrains Mono',monospace;font-size:10.5px;outline:none;}
 .filter-input{width:150px;}
 .filter-input:focus,.filter-sel:focus{border-color:var(--indigo);}
 .filter-sel{cursor:pointer;color:var(--txt2);}
 
-/* STRATEGY PANEL */
+/* STRATEGY */
 .strat-tabs{display:flex;gap:3px;margin-bottom:9px;}
-.strat-tab{padding:5px 11px;background:var(--surf);border:1px solid var(--b1);border-radius:4px;
-  color:var(--txt2);font-size:10.5px;font-weight:600;cursor:pointer;transition:all .13s;}
+.strat-tab{padding:5px 11px;background:var(--surf);border:1px solid var(--b1);border-radius:4px;color:var(--txt2);font-size:10.5px;font-weight:600;cursor:pointer;transition:all .13s;}
 .strat-tab.active{background:var(--gcyan);border-color:var(--cyan);color:var(--cyan);}
-.strat-tab.active.pagi{background:rgba(245,158,11,0.1);border-color:var(--gold);color:var(--gold);}
-.strat-tab.active.sore{background:rgba(167,139,250,0.1);border-color:var(--purple);color:var(--purple);}
-.strat-tab.active.swing{background:rgba(56,189,248,0.1);border-color:var(--cyan);color:var(--cyan);}
 .strat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
 .strat-card{background:var(--surf2);border:1px solid var(--b1);border-radius:6px;padding:10px 11px;cursor:pointer;transition:border-color .13s;}
 .strat-card:hover{border-color:var(--b2);}
@@ -373,27 +355,27 @@ tr:hover td{background:var(--surf2);}
 .ms-val{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;}
 .ms-sub{font-size:7.5px;color:var(--txt3);}
 
-/* ALLOC */
-.alloc-bar{display:flex;height:5px;border-radius:3px;overflow:hidden;margin-bottom:5px;}
-.alloc-seg{height:100%;transition:width .7s ease;}
-.alloc-legend{display:flex;flex-wrap:wrap;gap:6px;}
-.alloc-leg-item{display:flex;align-items:center;gap:4px;font-size:9.5px;color:var(--txt2);}
-.alloc-dot{width:6px;height:6px;border-radius:2px;flex-shrink:0;}
-
 /* TAGS */
 .tag{display:inline-block;padding:1px 5px;border-radius:3px;font-size:8.5px;font-weight:700;font-family:'JetBrains Mono',monospace;}
 .tag.up{background:var(--ggreen);color:var(--green);}
 .tag.dn{background:var(--gred);color:var(--red);}
 .tag.neu{background:var(--ggold);color:var(--gold);}
 
-/* NEWS LOADING */
+/* NEWS AI */
+.ai-news-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;}
+.ai-news-card{background:var(--surf2);border:1px solid var(--b1);border-radius:6px;padding:9px 10px;cursor:pointer;transition:border-color .13s;}
+.ai-news-card:hover{border-color:var(--b2);}
+.ain-time{font-family:'JetBrains Mono',monospace;font-size:7.5px;color:var(--txt3);margin-bottom:3px;}
+.ain-title{font-size:10px;color:var(--txt);line-height:1.45;margin-bottom:4px;}
+.ain-impact{display:flex;align-items:center;gap:5px;}
+.ain-sym{font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;padding:1px 4px;border-radius:2px;}
+.ain-sym.bull{background:rgba(34,197,94,0.12);color:var(--green);}
+.ain-sym.bear{background:rgba(239,68,68,0.1);color:var(--red);}
+.ain-sym.neut{background:rgba(245,158,11,0.1);color:var(--gold);}
 .news-loading{display:flex;align-items:center;gap:7px;padding:8px;background:var(--bg3);border-radius:5px;font-size:10px;color:var(--txt3);}
-.news-loading .spin{font-size:12px;}
 
 /* TOAST */
-#toast{position:fixed;bottom:16px;right:16px;z-index:999;background:var(--surf2);border:1px solid var(--b2);
-  border-radius:7px;padding:10px 13px;display:flex;align-items:center;gap:8px;min-width:250px;max-width:360px;
-  transform:translateY(80px);opacity:0;transition:all .35s cubic-bezier(.34,1.56,.64,1);}
+#toast{position:fixed;bottom:16px;right:16px;z-index:999;background:var(--surf2);border:1px solid var(--b2);border-radius:7px;padding:10px 13px;display:flex;align-items:center;gap:8px;min-width:250px;max-width:360px;transform:translateY(80px);opacity:0;transition:all .35s cubic-bezier(.34,1.56,.64,1);}
 #toast.show{transform:translateY(0);opacity:1;}
 .t-icon{font-size:15px;flex-shrink:0;}
 .t-title{font-size:11.5px;font-weight:700;margin-bottom:1px;}
@@ -407,22 +389,6 @@ tr:hover td{background:var(--surf2);}
 .modal-close:hover{color:var(--txt);}
 .modal-title{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;margin-bottom:12px;color:var(--txt);}
 
-/* AI NEWS SECTION */
-.ai-news-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;}
-.ai-news-card{background:var(--surf2);border:1px solid var(--b1);border-radius:6px;padding:9px 10px;cursor:pointer;transition:border-color .13s;}
-.ai-news-card:hover{border-color:var(--b2);}
-.ain-time{font-family:'JetBrains Mono',monospace;font-size:7.5px;color:var(--txt3);margin-bottom:3px;}
-.ain-title{font-size:10px;color:var(--txt);line-height:1.45;margin-bottom:4px;}
-.ain-impact{display:flex;align-items:center;gap:5px;}
-.ain-sym{font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;padding:1px 4px;border-radius:2px;}
-.ain-sym.bull{background:rgba(34,197,94,0.12);color:var(--green);}
-.ain-sym.bear{background:rgba(239,68,68,0.1);color:var(--red);}
-.ain-sym.neut{background:rgba(245,158,11,0.1);color:var(--gold);}
-
-/* LOADING OVERLAY */
-.loading-ov{position:absolute;inset:0;background:rgba(2,4,9,0.7);display:flex;align-items:center;justify-content:center;z-index:20;border-radius:8px;backdrop-filter:blur(2px);}
-.loading-spinner{width:24px;height:24px;border:2px solid var(--b2);border-top-color:var(--cyan);border-radius:50%;animation:spin .7s linear infinite;}
-
 @media(max-width:1100px){#app{grid-template-columns:0 1fr 236px;}#sidebar{display:none;}}
 @media(max-width:800px){#app{grid-template-columns:1fr;}#rpanel{display:none;}.ind-grid{grid-template-columns:repeat(2,1fr);}.order-grid{grid-template-columns:1fr;}.perf-grid{grid-template-columns:repeat(2,1fr);}.strat-grid{grid-template-columns:1fr 1fr;}}
 </style>
@@ -430,13 +396,13 @@ tr:hover td{background:var(--surf2);}
 <body>
 
 <nav id="nav">
-  <div class="logo">NEXUS<span style="opacity:.5">_</span>TRADE <span class="logo-sub">BETA v4.0</span></div>
+  <div class="logo">NEXUS<span style="opacity:.5">_</span>TRADE <span class="logo-sub">PRO v5.0</span></div>
   <div class="ndiv"></div>
   <div class="nav-tabs">
-    <button class="nav-tab active" onclick="showSection('dashboard',this)">Dashboard</button>
-    <button class="nav-tab" onclick="showSection('analytics',this)">Analytics</button>
+    <button class="nav-tab active" onclick="showSection('dashboard',this)">Dashboard & AI</button>
+    <button class="nav-tab" onclick="showSection('analytics',this)">Analisis Teknikal</button>
     <button class="nav-tab" onclick="showSection('portfolio',this)">Portfolio</button>
-    <button class="nav-tab" onclick="showSection('screener',this)">Screener</button>
+    <button class="nav-tab" onclick="showSection('screener',this)">Screener IDX</button>
     <button class="nav-tab" onclick="showSection('news',this)">News AI</button>
     <button class="nav-tab" onclick="showSection('history',this)">History</button>
   </div>
@@ -463,9 +429,8 @@ tr:hover td{background:var(--surf2);}
   <aside id="sidebar">
     <div class="sb-grp">
       <div class="sb-lbl">Utama</div>
-      <div class="sb-it active" onclick="sbClick(this,'dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</div>
-      <div class="sb-it" onclick="sbClick(this,'analytics')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Analytics</div>
-      <div class="sb-it" onclick="sbClick(this,'dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Sinyal AI <span class="sb-badge" id="sbBadge">—</span></div>
+      <div class="sb-it active" onclick="sbClick(this,'dashboard')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard & AI</div>
+      <div class="sb-it" onclick="sbClick(this,'analytics')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Analisis Teknikal</div>
       <div class="sb-it" onclick="openRiskModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><circle cx="12" cy="16" r=".5" fill="currentColor"/></svg>Risk Manager</div>
     </div>
     <div class="sb-grp">
@@ -477,7 +442,7 @@ tr:hover td{background:var(--surf2);}
     <div class="sb-grp">
       <div class="sb-lbl">Analisis</div>
       <div class="sb-it" onclick="sbClick(this,'screener')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>Screener IDX <span class="sb-badge blue">AI</span></div>
-      <div class="sb-it" onclick="sbClick(this,'news')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6z"/></svg>Berita AI Live <span class="sb-badge purple">NEW</span></div>
+      <div class="sb-it" onclick="sbClick(this,'news')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/></svg>Berita AI Live <span class="sb-badge purple">NEW</span></div>
       <div class="sb-it" onclick="openHeatmap()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>Heatmap Sektor</div>
     </div>
     <div class="sb-grp">
@@ -488,8 +453,10 @@ tr:hover td{background:var(--surf2);}
   </aside>
 
   <main id="main">
-    <!-- DASHBOARD -->
+
+    <!-- ══ DASHBOARD & AI (COMBINED) ══ -->
     <div class="section active" id="sec-dashboard">
+
       <!-- News Ticker -->
       <div class="news-ticker-wrap">
         <div style="display:flex;align-items:center;overflow:hidden;">
@@ -515,18 +482,10 @@ tr:hover td{background:var(--surf2);}
         </div>
       </div>
 
+      <!-- Symbol + TF selector -->
       <div class="sec-topbar">
         <div class="sym-pills" id="symPills">
-          <button class="sym-pill active" onclick="selSym(this,'BBCA')">BBCA</button>
-          <button class="sym-pill" onclick="selSym(this,'BMRI')">BMRI</button>
-          <button class="sym-pill" onclick="selSym(this,'BBRI')">BBRI</button>
-          <button class="sym-pill" onclick="selSym(this,'TLKM')">TLKM</button>
-          <button class="sym-pill" onclick="selSym(this,'ASII')">ASII</button>
-          <button class="sym-pill" onclick="selSym(this,'GOTO')">GOTO</button>
-          <button class="sym-pill" onclick="selSym(this,'BNBR')">BNBR</button>
-          <button class="sym-pill" onclick="selSym(this,'BREN')">BREN</button>
-          <button class="sym-pill" onclick="selSym(this,'ADRO')">ADRO</button>
-          <button class="sym-pill" onclick="selSym(this,'PTBA')">PTBA</button>
+          <!-- Will be populated dynamically from ALL screener stocks -->
         </div>
         <div class="tf-pills">
           <button class="tf-pill active" onclick="selTF(this,'1M')">1M</button>
@@ -538,66 +497,139 @@ tr:hover td{background:var(--surf2);}
         </div>
       </div>
 
-      <div class="card price-hdr" id="priceHdr">
-        <div class="ph-main">
-          <div class="ph-sym" id="ph-sym">BBCA / IDR</div>
-          <div class="ph-price" id="ph-price">—</div>
-          <div class="ph-chg" id="ph-chg">—</div>
-        </div>
-        <div class="ph-stat"><div class="ph-slbl">Open</div><div class="ph-sval" id="ph-open">—</div></div>
-        <div class="ph-stat"><div class="ph-slbl">High</div><div class="ph-sval" style="color:var(--green)" id="ph-high">—</div></div>
-        <div class="ph-stat"><div class="ph-slbl">Low</div><div class="ph-sval" style="color:var(--red)" id="ph-low">—</div></div>
-        <div class="ph-stat"><div class="ph-slbl">Volume</div><div class="ph-sval" id="ph-vol">—</div></div>
-        <div class="ph-stat"><div class="ph-slbl">Mkt Cap</div><div class="ph-sval" id="ph-mcap">—</div></div>
-        <div class="ph-stat"><div class="ph-slbl">P/E</div><div class="ph-sval" id="ph-pe">—</div></div>
-        <div class="ph-stat"><div class="ph-slbl">Div Yield</div><div class="ph-sval" id="ph-div">—</div></div>
-        <div style="margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
-          <div class="data-pill sim" id="dataPill"><div class="dot"></div><span id="dataSrcTxt">Simulasi</span></div>
-          <div style="font-family:'JetBrains Mono',monospace;font-size:7.5px;color:var(--txt3)" id="lastUpd">—</div>
-        </div>
-      </div>
-
-      <div class="chart-wrap" id="chartWrap">
-        <div class="chart-ov">
-          <button class="ind-tog on" id="tog-ma" onclick="togInd('ma',this)">MA</button>
-          <button class="ind-tog on" id="tog-bb" onclick="togInd('bb',this)">BB</button>
-          <button class="ind-tog on" id="tog-vol" onclick="togInd('vol',this)">VOL</button>
-          <button class="ind-tog" id="tog-ema" onclick="togInd('ema',this)">EMA12/26</button>
-          <button class="ind-tog" id="tog-vwap" onclick="togInd('vwap',this)">VWAP</button>
-          <button class="ind-tog" id="tog-fib" onclick="togInd('fib',this)">FIB</button>
-        </div>
-        <div id="chartClosedOv" class="mkt-closed-ov" style="display:none;">
-          <div class="mkt-closed-badge">⏸ Pasar Tutup — Chart beku · Harga tidak berubah</div>
-        </div>
-        <canvas id="mainCanvas" height="260"></canvas>
-      </div>
-
-      <!-- AI Signal -->
-      <div class="ai-card" id="aiCard">
-        <div class="ai-orb" id="aiOrb">🤖</div>
-        <div class="ai-body">
-          <div class="ai-title" id="aiTitle">AI INTELLIGENCE — MENGANALISIS...</div>
-          <div class="ai-desc" id="aiDesc">Sistem AI multi-layer sedang memproses data teknikal, fundamental, sentimen berita, dan kondisi makroekonomi...</div>
-          <div class="ai-tags" id="aiTags"></div>
-        </div>
-        <div class="ai-right">
-          <div class="conf-ring-wrap">
-            <svg width="58" height="58" viewBox="0 0 58 58">
-              <circle class="conf-ring-bg" cx="29" cy="29" r="23"/>
-              <circle class="conf-ring-fill" id="confRing" cx="29" cy="29" r="23" stroke-dasharray="144.5" stroke-dashoffset="144.5"/>
-            </svg>
-            <div class="conf-pct" id="confPct">—</div>
+      <!-- ENHANCED PRICE HEADER -->
+      <div class="price-hdr-pro">
+        <div class="ph-top-bar">
+          <div class="ph-left">
+            <div class="ph-sym-block">
+              <div class="ph-sym-name" id="ph-sym">BBCA / IDX · 1D</div>
+              <div class="ph-company" id="ph-company">PT Bank Central Asia Tbk</div>
+            </div>
+            <div>
+              <div class="ph-price-big" id="ph-price">—</div>
+              <div class="ph-chg-row">
+                <div class="ph-chg-badge up" id="ph-chg-badge">—</div>
+                <span style="font-family:'JetBrains Mono',monospace;font-size:8.5px;color:var(--txt3);" id="ph-date">Sabtu, 29 Mar 2026</span>
+              </div>
+            </div>
           </div>
-          <div class="conf-lbl">CONFIDENCE</div>
-          <div class="ai-signal-badge buy" id="aiSigBadge">—</div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div class="data-pill sim" id="dataPill"><div class="dot"></div><span id="dataSrcTxt">Simulasi</span></div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:7.5px;color:var(--txt3)" id="lastUpd">—</div>
+          </div>
+        </div>
+        <div class="ph-ohlcv">
+          <div class="ph-stat"><div class="ph-slbl">Open</div><div class="ph-sval" id="ph-open">—</div></div>
+          <div class="ph-stat"><div class="ph-slbl">High</div><div class="ph-sval" style="color:var(--green)" id="ph-high">—</div></div>
+          <div class="ph-stat"><div class="ph-slbl">Low</div><div class="ph-sval" style="color:var(--red)" id="ph-low">—</div></div>
+          <div class="ph-stat"><div class="ph-slbl">Close</div><div class="ph-sval" id="ph-close">—</div></div>
+          <div class="ph-stat"><div class="ph-slbl">Volume</div><div class="ph-sval" id="ph-vol">—</div></div>
+          <div style="width:1px;background:var(--b1);margin:0 4px;"></div>
+          <div class="ph-stat"><div class="ph-slbl">52W High</div><div class="ph-sval" style="color:var(--green)" id="ph-52h">—</div></div>
+          <div class="ph-stat"><div class="ph-slbl">52W Low</div><div class="ph-sval" style="color:var(--red)" id="ph-52l">—</div></div>
+          <div style="width:1px;background:var(--b1);margin:0 4px;"></div>
+          <div class="ph-stat"><div class="ph-slbl">Mkt Cap</div><div class="ph-sval" id="ph-mcap">—</div></div>
+          <div class="ph-stat"><div class="ph-slbl">P/E Ratio</div><div class="ph-sval" id="ph-pe">—</div></div>
+          <div class="ph-stat"><div class="ph-slbl">Div Yield</div><div class="ph-sval" id="ph-div">—</div></div>
+          <div class="ph-stat"><div class="ph-slbl">Beta</div><div class="ph-sval" id="ph-beta">—</div></div>
+          <div style="width:1px;background:var(--b1);margin:0 4px;"></div>
+          <div class="ph-stat"><div class="ph-slbl">Sektor</div><div class="ph-sval" style="color:var(--gold);font-size:10px;" id="ph-sector">—</div></div>
+          <div class="ph-stat"><div class="ph-slbl">ROE</div><div class="ph-sval" id="ph-roe">—</div></div>
         </div>
       </div>
 
-      <!-- Indicators -->
+      <!-- TRADINGVIEW-STYLE CHART -->
+      <div class="chart-container">
+        <div class="chart-header">
+          <div class="chart-ohlc-row">
+            <span style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10.5px;color:var(--cyan);" id="ch-sym">BBCA</span>
+            <span style="color:var(--txt3);font-size:9px;">·</span>
+            <div class="chart-ohlc-item"><span class="chart-ohlc-lbl">O</span><span class="chart-ohlc-val" style="color:var(--txt)" id="ch-open">—</span></div>
+            <div class="chart-ohlc-item"><span class="chart-ohlc-lbl">H</span><span class="chart-ohlc-val" style="color:var(--green)" id="ch-high">—</span></div>
+            <div class="chart-ohlc-item"><span class="chart-ohlc-lbl">L</span><span class="chart-ohlc-val" style="color:var(--red)" id="ch-low">—</span></div>
+            <div class="chart-ohlc-item"><span class="chart-ohlc-lbl">C</span><span class="chart-ohlc-val" id="ch-close">—</span></div>
+            <div class="chart-ohlc-item"><span class="chart-ohlc-lbl">%</span><span class="chart-ohlc-val" id="ch-pct">—</span></div>
+            <div class="chart-ohlc-item"><span class="chart-ohlc-lbl">Vol</span><span class="chart-ohlc-val" style="color:var(--txt2)" id="ch-vol">—</span></div>
+          </div>
+          <div class="chart-ind-row">
+            <button class="ind-tog on" id="tog-ma" onclick="togInd('ma',this)">MA20/50</button>
+            <button class="ind-tog on" id="tog-bb" onclick="togInd('bb',this)">BB</button>
+            <button class="ind-tog on" id="tog-vol" onclick="togInd('vol',this)">VOL</button>
+            <button class="ind-tog" id="tog-ema" onclick="togInd('ema',this)">EMA12/26</button>
+            <button class="ind-tog" id="tog-vwap" onclick="togInd('vwap',this)">VWAP</button>
+            <button class="ind-tog" id="tog-fib" onclick="togInd('fib',this)">FIB</button>
+          </div>
+        </div>
+        <div style="position:relative;">
+          <div id="chartClosedOv" class="mkt-closed-ov" style="display:none;">
+            <div class="mkt-closed-badge">⏸ Pasar Tutup — Chart beku · Harga tidak berubah</div>
+          </div>
+          <canvas id="mainCanvas" height="280"></canvas>
+        </div>
+        <div class="chart-date-row">
+          <span class="chart-date-info" id="chart-date-info">IDX · Sabtu, 29 Mar 2026 · 15:02 WIB · Sesi Berakhir</span>
+          <span style="flex:1;"></span>
+          <span class="chart-cursor-info" id="cursor-info"></span>
+        </div>
+      </div>
+
+      <!-- AI SIGNAL PANEL — Enhanced -->
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;margin-bottom:7px;display:flex;align-items:center;gap:8px;">
+          🤖 AI Intelligence Signal
+          <span style="font-size:9px;color:var(--txt3);" id="ai-last-upd">—</span>
+        </div>
+        <div class="ai-panel-pro">
+          <!-- Main AI Card -->
+          <div class="ai-main-card">
+            <div class="ai-orb" id="aiOrb">🤖</div>
+            <div class="ai-body">
+              <div class="ai-title" id="aiTitle">AI INTELLIGENCE — MENGANALISIS...</div>
+              <div class="ai-desc" id="aiDesc">Sistem AI multi-layer sedang memproses data teknikal, fundamental, sentimen berita...</div>
+              <div class="ai-tags" id="aiTags"></div>
+            </div>
+            <div class="ai-right">
+              <div class="conf-ring-wrap">
+                <svg width="62" height="62" viewBox="0 0 62 62">
+                  <circle class="conf-ring-bg" cx="31" cy="31" r="25"/>
+                  <circle class="conf-ring-fill" id="confRing" cx="31" cy="31" r="25" stroke-dasharray="157" stroke-dashoffset="157"/>
+                </svg>
+                <div class="conf-pct" id="confPct">—</div>
+              </div>
+              <div class="conf-lbl">CONFIDENCE</div>
+              <div class="ai-signal-badge buy" id="aiSigBadge">—</div>
+            </div>
+          </div>
+          <!-- Target Price Cards -->
+          <div class="target-card">
+            <div class="tc-lbl">🎯 Target Price 1</div>
+            <div class="tc-val" style="color:var(--green);" id="tp1-val">—</div>
+            <div class="tc-sub" id="tp1-pct">+0.0% dari harga kini</div>
+          </div>
+          <div class="target-card">
+            <div class="tc-lbl">🚀 Target Price 2</div>
+            <div class="tc-val" style="color:var(--green);" id="tp2-val">—</div>
+            <div class="tc-sub" id="tp2-pct">+0.0% dari harga kini</div>
+          </div>
+          <div class="target-card">
+            <div class="tc-lbl">🛑 Stop Loss</div>
+            <div class="tc-val" style="color:var(--red);" id="sl-val">—</div>
+            <div class="tc-sub" id="sl-pct">-0.0% dari harga kini</div>
+          </div>
+          <div class="target-card">
+            <div class="tc-lbl">📰 Sentimen Berita</div>
+            <div class="tc-val" style="color:var(--cyan);" id="news-sent">—</div>
+            <div class="tc-sub" id="news-sent-sub">—</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Technical Indicators -->
       <div>
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px;">
           <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:11px;">Indikator Teknikal</div>
           <div style="font-size:9px;color:var(--txt3);font-family:'JetBrains Mono',monospace;" id="indTime">—</div>
+          <div style="margin-left:auto;font-size:8px;color:var(--txt3);" id="ind-sig-sum">—</div>
         </div>
         <div class="ind-grid">
           <div class="ind-card"><div class="ind-top"><div class="ind-name">RSI (14)</div><div class="ind-sig neutral" id="rsi-sig">—</div></div><div class="ind-val" id="rsi-val">—</div><div class="ind-bar"><div class="ind-fill g" id="rsi-bar" style="width:0%"></div></div><div class="ind-extra" id="rsi-extra"></div></div>
@@ -615,8 +647,10 @@ tr:hover td{background:var(--surf2);}
           <div class="ind-card"><div class="ind-top"><div class="ind-name">OBV</div><div class="ind-sig neutral" id="obv-sig">—</div></div><div class="ind-val" id="obv-val">—</div><div class="ind-bar"><div class="ind-fill g" id="obv-bar" style="width:60%"></div></div><div class="ind-extra">On-Balance Volume</div></div>
         </div>
       </div>
+
+      <!-- Fundamental -->
       <div class="card">
-        <div class="card-title">📐 Fundamental & Valuasi Formula</div>
+        <div class="card-title">📐 Fundamental & Valuasi</div>
         <div class="formula-grid">
           <div class="formula-card"><div class="formula-name">P/E Ratio</div><div class="formula-val" id="form-pe">—</div><div class="formula-sub">Harga / EPS</div></div>
           <div class="formula-card"><div class="formula-name">P/BV Ratio</div><div class="formula-val" id="form-pbv">—</div><div class="formula-sub">Harga / Nilai Buku</div></div>
@@ -628,6 +662,8 @@ tr:hover td{background:var(--surf2);}
           <div class="formula-card"><div class="formula-name">Sharpe Ratio</div><div class="formula-val" id="form-sharpe">—</div><div class="formula-sub">(R−Rf) / σ [Rf=6%]</div></div>
         </div>
       </div>
+
+      <!-- Order Panel -->
       <div class="card">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
           <div class="card-title" style="margin-bottom:0;">💹 Eksekusi Order — <span id="orderSym" style="color:var(--cyan)">BBCA</span></div>
@@ -667,7 +703,7 @@ tr:hover td{background:var(--surf2);}
     <div class="section" id="sec-analytics">
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
         <div><div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:13px;">Analisis Teknikal Mendalam</div><div style="font-size:9.5px;color:var(--txt3);">Fibonacci · Support/Resistance · Moving Averages · Oscillators</div></div>
-        <div class="sym-pills">
+        <div class="sym-pills" id="analSymPills">
           <button class="sym-pill active" onclick="selAnalSym(this,'BBCA')">BBCA</button>
           <button class="sym-pill" onclick="selAnalSym(this,'BMRI')">BMRI</button>
           <button class="sym-pill" onclick="selAnalSym(this,'ASII')">ASII</button>
@@ -676,7 +712,34 @@ tr:hover td{background:var(--surf2);}
           <button class="sym-pill" onclick="selAnalSym(this,'ADRO')">ADRO</button>
         </div>
       </div>
-      <div class="chart-wrap"><canvas id="analyticsCanvas" height="290"></canvas></div>
+
+      <!-- Enhanced Analytics Chart Header -->
+      <div class="chart-container">
+        <div class="chart-header">
+          <div class="chart-ohlc-row">
+            <span style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:10.5px;color:var(--cyan);" id="ach-sym">BBCA</span>
+            <span style="color:var(--txt3);font-size:9px;">·</span>
+            <div class="chart-ohlc-item"><span class="chart-ohlc-lbl">O</span><span class="chart-ohlc-val" style="color:var(--txt)" id="ach-open">—</span></div>
+            <div class="chart-ohlc-item"><span class="chart-ohlc-lbl">H</span><span class="chart-ohlc-val" style="color:var(--green)" id="ach-high">—</span></div>
+            <div class="chart-ohlc-item"><span class="chart-ohlc-lbl">L</span><span class="chart-ohlc-val" style="color:var(--red)" id="ach-low">—</span></div>
+            <div class="chart-ohlc-item"><span class="chart-ohlc-lbl">C</span><span class="chart-ohlc-val" id="ach-close">—</span></div>
+            <div class="chart-ohlc-item"><span class="chart-ohlc-lbl">%</span><span class="chart-ohlc-val" id="ach-pct">—</span></div>
+          </div>
+          <div class="chart-ind-row">
+            <button class="ind-tog on" id="atog-ma" onclick="atogInd('ma',this)">MA</button>
+            <button class="ind-tog on" id="atog-bb" onclick="atogInd('bb',this)">BB</button>
+            <button class="ind-tog" id="atog-fib" onclick="atogInd('fib',this)">FIB</button>
+            <button class="ind-tog" id="atog-vwap" onclick="atogInd('vwap',this)">VWAP</button>
+          </div>
+        </div>
+        <canvas id="analyticsCanvas" height="290"></canvas>
+        <div class="chart-date-row">
+          <span class="chart-date-info" id="anal-date-info">IDX · Daily Chart — 90 hari terakhir</span>
+          <span style="flex:1;"></span>
+          <span class="chart-cursor-info" id="anal-cursor-info"></span>
+        </div>
+      </div>
+
       <div class="analytics-grid">
         <div class="card">
           <div class="card-title">📐 Fibonacci Retracement (52-week)</div>
@@ -752,20 +815,16 @@ tr:hover td{background:var(--surf2);}
           <button class="btn-sm btn-o" onclick="buildScr();buildStratPanel()">⟳ Refresh</button>
         </div>
       </div>
-
-      <!-- Strategy Panel -->
       <div class="card">
         <div class="card-title">🎯 Strategi Intraday — AI Recommendation Engine</div>
         <div class="strat-tabs">
-          <button class="strat-tab active" onclick="selStratTab(this,'all')">📊 Semua Saham</button>
-          <button class="strat-tab pagi" onclick="selStratTab(this,'pagi')">🌅 Beli Pagi → Jual Sore</button>
-          <button class="strat-tab sore" onclick="selStratTab(this,'sore')">🌆 Beli Sore → Jual Besok Pagi</button>
-          <button class="strat-tab swing" onclick="selStratTab(this,'swing')">📈 Swing Trade (3–5 hari)</button>
+          <button class="strat-tab active" onclick="selStratTab(this,'all')">📊 Semua</button>
+          <button class="strat-tab" onclick="selStratTab(this,'pagi')">🌅 Beli Pagi → Jual Sore</button>
+          <button class="strat-tab" onclick="selStratTab(this,'sore')">🌆 Beli Sore → Jual Besok</button>
+          <button class="strat-tab" onclick="selStratTab(this,'swing')">📈 Swing Trade (3–5 hari)</button>
         </div>
         <div id="strategyPanel"><div style="font-size:10px;color:var(--txt3);padding:6px 0;">Pilih strategi untuk melihat rekomendasi AI.</div></div>
       </div>
-
-      <!-- Filters -->
       <div class="card">
         <div class="filter-row">
           <input type="text" class="filter-input" placeholder="🔍 Cari saham..." id="scrSearch" oninput="filterScr()">
@@ -871,13 +930,13 @@ tr:hover td{background:var(--surf2);}
 
 <script>
 /* ══════════════════════════════════════════════════════════
-   NEXUSTRADE PRO v4.0 — IDX Intelligence Platform
-   ✓ Harga real dari IDX via Anthropic AI + Web Search
-   ✓ AI Analysis multi-layer (Teknikal + Fundamental + Berita)
-   ✓ News AI: berita terkini dengan dampak ke saham
-   ✓ Screener AI Score multi-faktor
-   ✓ Strategi Pagi/Sore/Swing berbasis algoritma scoring
-   ✓ Freeze harga saat pasar tutup
+   NEXUSTRADE PRO v5.0 — Enhanced IDX Intelligence Platform
+   ✓ ALL screener stocks shown in Dashboard symbol pills
+   ✓ Dashboard + AI Signal merged into one premium menu
+   ✓ TradingView-style chart header with OHLCV + date info
+   ✓ Enhanced price header with 52W, sector, ROE, Beta
+   ✓ AI target prices + sentiment shown prominently
+   ✓ Real harga IDX via Anthropic AI + Web Search
 ══════════════════════════════════════════════════════════ */
 
 // ─── MARKET HOURS ───
@@ -897,7 +956,7 @@ function getMarketStatus(){
   return{isOpen,time:`${H}:${M} WIB`,sess,wibH,wibM,wibDay};
 }
 
-// ─── DATA DEFAULTS (IDX Mar 2026) ───
+// ─── DATA — All stocks from screener ───
 const BASE={
   BBCA:9450,BMRI:7100,BBRI:4620,TLKM:3020,ASII:4980,
   GOTO:65,UNVR:2150,ICBP:10800,KLBF:1640,INDF:6950,
@@ -939,47 +998,48 @@ const FUND={
 };
 const W52={BBCA:{h:9900,l:8200},TLKM:{h:3820,l:2640},ASII:{h:5600,l:4320},BMRI:{h:7400,l:5500},BBRI:{h:5400,l:4100},GOTO:{h:108,l:48},UNVR:{h:2980,l:2020},ICBP:{h:11400,l:9600},KLBF:{h:1820,l:1340},INDF:{h:7200,l:6100},BREN:{h:12800,l:8400},TPIA:{h:5200,l:3500},SMGR:{h:5100,l:3400},PTBA:{h:3600,l:2600},MTEL:{h:940,l:680},ADRO:{h:4200,l:2980},ANTM:{h:2040,l:1280},BBTN:{h:1380,l:920},BNBR:{h:220,l:88},BUMI:{h:168,l:78},ENRG:{h:142,l:62},BRPT:{h:1680,l:980},HRUM:{h:1980,l:1200},MDKA:{h:2640,l:1480},SIDO:{h:920,l:660},INCO:{h:4400,l:3100},TINS:{h:1540,l:880},WSKT:{h:362,l:140},WIKA:{h:482,l:188}};
 const NAMES={BBCA:'Bank Central Asia',TLKM:'Telkom Indonesia',ASII:'Astra International',BMRI:'Bank Mandiri',BBRI:'Bank Rakyat Indonesia',GOTO:'GoTo Gojek Tokopedia',UNVR:'Unilever Indonesia',ICBP:'Indofood CBP Sukses',KLBF:'Kalbe Farma',INDF:'Indofood Sukses Makmur',BREN:'Barito Renewables Energy',TPIA:'Chandra Asri Pacific',SMGR:'Semen Indonesia',PTBA:'Bukit Asam (Persero)',MTEL:'Dayamitra Telekomunikasi',ADRO:'Adaro Energy Indonesia',ANTM:'Aneka Tambang (Persero)',BBTN:'Bank Tabungan Negara',BNBR:'Bakrie & Brothers',BUMI:'Bumi Resources',ENRG:'Energi Mega Persada',BRPT:'Barito Pacific',HRUM:'Harum Energy',MDKA:'Merdeka Copper Gold',SIDO:'Industri Jamu SIDO',INCO:'Vale Indonesia',TINS:'Timah (Persero)',WSKT:'Waskita Karya',WIKA:'Wijaya Karya'};
+const SECTOR_LABEL={bank:'Perbankan',telecom:'Telekomunikasi',auto:'Otomotif',consumer:'Konsumer',energy:'Energi/EBT',tech:'Teknologi',conglomerate:'Konglomerat',property:'Properti/Infra'};
 const VOL={BBCA:'142.4M',TLKM:'94.8M',ASII:'72.1M',BMRI:'108.2M',BBRI:'124.6M',GOTO:'6.2B',UNVR:'14.2M',ICBP:'9.8M',KLBF:'52.4M',INDF:'10.4M',BREN:'28.6M',TPIA:'6.2M',SMGR:'8.4M',PTBA:'22.8M',MTEL:'38.4M',ADRO:'24.8M',ANTM:'92.4M',BBTN:'48.2M',BNBR:'2.84B',BUMI:'1.42B',ENRG:'824M',BRPT:'12.4M',HRUM:'18.4M',MDKA:'28.4M',SIDO:'8.4M',INCO:'14.2M',TINS:'42.4M',WSKT:'28.4M',WIKA:'18.4M'};
 const HOLDINGS=[{sym:'BBCA',avgBuy:8920,lot:50},{sym:'BMRI',avgBuy:7200,lot:20},{sym:'TLKM',avgBuy:2950,lot:30},{sym:'BNBR',avgBuy:148,lot:200}];
 
-// ─── AI CONTEXT (Berita & Sentimen per saham) ───
 const AI_CONTEXT={
-  BBCA:{sentiment:92,news:'Laba Q4 2025 +13.8% YoY (Rp 62.7T). NIM 5.5%, NPL 1.8%. Kredit tumbuh 15% didorong KPR dan korporasi. Dividen interim diumumkan.',signal:'BELI KUAT',cls:'buy',conf:86,
-    reasoning:'Fundamental terkuat di sektor perbankan IDX. Golden cross MA50/200 terkonfirmasi. RSI zona moderat 55–60. Katalis: dividen upcoming + ekspansi kredit Q1 2026.',
+  BBCA:{sentiment:92,news:'Laba Q4 2025 +13.8% YoY (Rp 62.7T). NIM 5.5%, NPL 1.8%. Kredit tumbuh 15%.',signal:'BELI KUAT',cls:'buy',conf:86,
+    reasoning:'Fundamental terkuat di sektor perbankan IDX. Golden cross MA50/200 terkonfirmasi. RSI zona moderat. Katalis: dividen upcoming + ekspansi kredit Q1 2026.',
     targets:{tp1:9800,tp2:10200,sl:8900}},
-  BMRI:{sentiment:78,news:'Kredit korporasi naik 18% YoY, NIM 5.6%. BMRI memperluas pembiayaan infrastruktur Q1 2026.',signal:'BELI',cls:'buy',conf:74,
+  BMRI:{sentiment:78,news:'Kredit korporasi naik 18% YoY, NIM 5.6%. Perluas pembiayaan infrastruktur Q1 2026.',signal:'BELI',cls:'buy',conf:74,
     reasoning:'MACD bullish cross, harga di atas EMA20 & 50. ROE 17% meningkat. Target menuju resistance 7.500.',
     targets:{tp1:7400,tp2:7700,sl:6700}},
-  BBRI:{sentiment:80,news:'UMKM kredit +16% YoY. BBRI targetkan NPL <2.5% di 2026. Dividen yield 4.8% sangat menarik.',signal:'BELI KUAT',cls:'buy',conf:81,
+  BBRI:{sentiment:80,news:'UMKM kredit +16% YoY. Targetkan NPL <2.5% di 2026. Dividen yield 4.8%.',signal:'BELI KUAT',cls:'buy',conf:81,
     reasoning:'ROE tertinggi perbankan 20.4%. RSI 48 zona optimal beli. Divergensi bullish MACD.',
     targets:{tp1:4900,tp2:5200,sl:4300}},
-  TLKM:{sentiment:52,news:'Pendapatan data +8% YoY namun persaingan ketat. Dividen yield 6.2% menarik untuk income investor.',signal:'TAHAN',cls:'hold',conf:55,
+  TLKM:{sentiment:52,news:'Pendapatan data +8% YoY namun persaingan ketat. Dividen yield 6.2%.',signal:'TAHAN',cls:'hold',conf:55,
     reasoning:'Resistance 3.100 belum tembus. Volatilitas rendah. Cocok untuk buy & hold dividen.',
     targets:{tp1:3200,tp2:3500,sl:2800}},
-  ASII:{sentiment:70,news:'Penjualan kendaraan Feb 2026 +9.2% YoY. ASII masuk bisnis kendaraan listrik dengan Hyundai.',signal:'BELI',cls:'buy',conf:70,
+  ASII:{sentiment:70,news:'Penjualan kendaraan Feb 2026 +9.2% YoY. Masuk bisnis kendaraan listrik.',signal:'BELI',cls:'buy',conf:70,
     reasoning:'PE 11.8x murah vs historis. Diversifikasi EV membuka katalis pertumbuhan baru.',
     targets:{tp1:5400,tp2:5700,sl:4700}},
-  GOTO:{sentiment:35,news:'Revenue tumbuh +22% namun masih rugi bersih. GoTo fintech mulai positif. Tekanan dari Shopee & TikTok Shop.',signal:'JUAL / HINDARI',cls:'sell',conf:65,
+  GOTO:{sentiment:35,news:'Revenue tumbuh +22% namun masih rugi bersih. Tekanan dari Shopee & TikTok Shop.',signal:'JUAL',cls:'sell',conf:65,
     reasoning:'Loss-making, beta tinggi 1.95. RSI mendekati overbought. Tidak ada dividen.',
     targets:{tp1:55,tp2:48,sl:78}},
-  BREN:{sentiment:88,news:'Insentif EBT pemerintah Rp 4.2T. BREN targetkan kapasitas 3x lipat 2026. Laba Q4 +42% YoY.',signal:'BELI',cls:'buy',conf:78,
+  BREN:{sentiment:88,news:'Insentif EBT pemerintah Rp 4.2T. Targetkan kapasitas 3x lipat 2026. Laba Q4 +42%.',signal:'BELI',cls:'buy',conf:78,
     reasoning:'EBT leader Indonesia. Katalis besar dari kebijakan energi hijau. PE premium justified.',
     targets:{tp1:12000,tp2:12800,sl:10400}},
-  BNBR:{sentiment:58,news:'Volume perdagangan BNBR melonjak 3x. Aksi korporasi Bakrie Group: restrukturisasi dan divestasi aset.',signal:'SPEKULATIF',cls:'spec',conf:48,
-    reasoning:'High beta 2.15. Cocok swing trade dengan SL ketat. Risiko tinggi — hanya untuk trader berpengalaman.',
+  BNBR:{sentiment:58,news:'Volume perdagangan BNBR melonjak 3x. Restrukturisasi dan divestasi aset.',signal:'SPEKULATIF',cls:'spec',conf:48,
+    reasoning:'High beta 2.15. Cocok swing trade dengan SL ketat. Risiko tinggi — hanya trader berpengalaman.',
     targets:{tp1:185,tp2:210,sl:138}},
-  ADRO:{sentiment:72,news:'Produksi batu bara 60M ton (+8.4% YoY). Dividen yield 9.0% sangat tinggi. PE 5.4x sangat murah.',signal:'BELI',cls:'buy',conf:73,
-    reasoning:'Valuasi sangat murah, cashflow kuat, hampir zero debt. Sentimen EBT jangka panjang menjadi risiko.',
+  ADRO:{sentiment:72,news:'Produksi batu bara 60M ton (+8.4% YoY). Dividen yield 9.0%. PE 5.4x sangat murah.',signal:'BELI',cls:'buy',conf:73,
+    reasoning:'Valuasi sangat murah, cashflow kuat, hampir zero debt.',
     targets:{tp1:3900,tp2:4200,sl:3300}},
-  PTBA:{sentiment:74,news:'Dividen Rp 534/saham diumumkan. Yield 10.2% tertinggi di LQ45. Laba stabil meski harga batu bara koreksi.',signal:'BELI',cls:'buy',conf:75,
+  PTBA:{sentiment:74,news:'Dividen Rp 534/saham diumumkan. Yield 10.2% tertinggi di LQ45.',signal:'BELI',cls:'buy',conf:75,
     reasoning:'PE 5.8x, cash flow sangat solid, zero net debt. Ideal untuk dividend investor.',
     targets:{tp1:3400,tp2:3700,sl:2800}},
 };
 
 // ─── STATE ───
 const ST={
-  sym:'BBCA',tf:'1M',side:'buy',
+  sym:'BBCA',tf:'1D',side:'buy',
   showMA:true,showBB:true,showVol:true,showEMA:false,showVWAP:false,showFib:false,
+  analShowMA:true,analShowBB:true,analShowFib:false,analShowVWAP:false,
   prices:{},opens:{},highs:{},lows:{},
   chartData:{},liveInt:null,mktInt:null,
   trades:[],isOpen:false,isLive:false,
@@ -987,23 +1047,49 @@ const ST={
   stratTab:'all'
 };
 
+// ─── ALL SYMBOLS (for pills) ───
+const ALL_SYMS=Object.keys(BASE);
+
 // ─── INIT ───
 window.addEventListener('DOMContentLoaded',()=>{
-  Object.keys(BASE).forEach(sym=>{
+  ALL_SYMS.forEach(sym=>{
     const bp=BASE[sym];
     ST.prices[sym]=Math.round(bp*(1+(Math.random()-.5)*.007));
     ST.opens[sym]=Math.round(bp*(1+(Math.random()-.5)*.003));
     ST.highs[sym]=ST.prices[sym];ST.lows[sym]=ST.prices[sym];
   });
+  buildSymPills();
   buildHist();buildWatchlist();buildScr();buildStratPanel();updateMktStatus();
   updatePriceHdr('BBCA');initChart();calcRisk();updateAI('BBCA');
   updatePortfolio();updateInd();updateFund('BBCA');updateAnalPanel('BBCA');
-  buildFibRows('BBCA');
+  buildFibRows('BBCA');updateChartHeaderInfo('BBCA');
   fetchAllData();
   ST.mktInt=setInterval(updateMktStatus,15000);
   startLive();
   setTimeout(()=>animConf(82),600);
+  updateDateInfo();
 });
+
+// ─── BUILD SYMBOL PILLS (ALL stocks) ───
+function buildSymPills(){
+  const container=document.getElementById('symPills');if(!container)return;
+  container.innerHTML=ALL_SYMS.map((sym,i)=>
+    `<button class="sym-pill${sym==='BBCA'?' active':''}" onclick="selSym(this,'${sym}')">${sym}</button>`
+  ).join('');
+}
+
+// ─── DATE INFO ───
+function updateDateInfo(){
+  const ms=getMarketStatus();
+  const now=new Date();
+  const days=['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const months=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+  const dayStr=`${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+  const dateEl=document.getElementById('ph-date');
+  if(dateEl)dateEl.textContent=dayStr+' · '+ms.time;
+  const chartDateEl=document.getElementById('chart-date-info');
+  if(chartDateEl)chartDateEl.textContent=`IDX · ${dayStr} · ${ms.time} · ${ms.sess}`;
+}
 
 // ─── MARKET STATUS ───
 function updateMktStatus(){
@@ -1016,6 +1102,7 @@ function updateMktStatus(){
   const execBtn=document.getElementById('execBtn'),badge=document.getElementById('mktClosedBadge');
   if(execBtn)execBtn.disabled=!ms.isOpen;
   if(badge)badge.style.display=ms.isOpen?'none':'flex';
+  updateDateInfo();
 }
 
 // ─── LIVE SIMULATION ───
@@ -1024,7 +1111,7 @@ function startLive(){
   ST.liveInt=setInterval(()=>{
     updateMktStatus();
     if(!ST.isOpen)return;
-    Object.keys(ST.prices).forEach(sym=>{
+    ALL_SYMS.forEach(sym=>{
       const bp=BASE[sym],beta=FUND[sym]?.beta||1,vol=0.0015*beta;
       const rand=Math.random()-.499;
       ST.prices[sym]=Math.max(1,Math.round(ST.prices[sym]*(1+rand*vol)));
@@ -1036,17 +1123,18 @@ function startLive(){
     ST.ihsg.price=Math.max(7000,Math.min(8200,ST.ihsg.price+(Math.random()-.498)*4));
     updateIHSG();updatePriceHdr(ST.sym);updateChartLive();
     updateInd();updateWatchlistLive();updatePortfolio();updateIndTime();
+    updateChartHeaderInfo(ST.sym);
   },1400);
 }
 
-// ─── FETCH REAL PRICES via Anthropic AI + Web Search ───
+// ─── FETCH REAL PRICES ───
 async function fetchAllData(){
   const btn=document.getElementById('liveBtn');
   if(btn)btn.classList.add('loading');
   setEl('liveTxt','Fetching...');
   try{
     const syms='BBCA,BMRI,BBRI,TLKM,ASII,GOTO,BREN,BNBR,ADRO,PTBA,ANTM,INDF,UNVR,IHSG';
-    const prompt=`Search web for current/latest IDX Indonesia stock prices March 2026 for: ${syms}. Use Yahoo Finance, Investing.com, or stockbit.com. Return ONLY valid JSON (no markdown): {"IHSG":{"price":7482,"pct":0.42,"volume":"8.2B"},"BBCA":{"price":9450,"pct":0.53,"volume":"142M"},"BMRI":{"price":7100,"pct":0.71},"BBRI":{"price":4620,"pct":0.43},"TLKM":{"price":3020,"pct":-0.33},"ASII":{"price":4980,"pct":0.20},"GOTO":{"price":65,"pct":-1.52},"BREN":{"price":11200,"pct":1.82},"BNBR":{"price":162,"pct":4.52},"ADRO":{"price":3650,"pct":-0.41},"PTBA":{"price":3100,"pct":0.65},"ANTM":{"price":1480,"pct":1.22},"INDF":{"price":6950,"pct":0.14},"UNVR":{"price":2150,"pct":-0.23}}`;
+    const prompt=`Search web for current/latest IDX Indonesia stock prices March 2026 for: ${syms}. Use Yahoo Finance, Investing.com, or stockbit.com. Return ONLY valid JSON (no markdown): {"IHSG":{"price":7482,"pct":0.42},"BBCA":{"price":9450,"pct":0.53},"BMRI":{"price":7100,"pct":0.71},"BBRI":{"price":4620,"pct":0.43},"TLKM":{"price":3020,"pct":-0.33},"ASII":{"price":4980,"pct":0.20},"GOTO":{"price":65,"pct":-1.52},"BREN":{"price":11200,"pct":1.82},"BNBR":{"price":162,"pct":4.52},"ADRO":{"price":3650,"pct":-0.41},"PTBA":{"price":3100,"pct":0.65},"ANTM":{"price":1480,"pct":1.22},"INDF":{"price":6950,"pct":0.14},"UNVR":{"price":2150,"pct":-0.23}}`;
     const resp=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
@@ -1060,15 +1148,11 @@ async function fetchAllData(){
       const txt=data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
       const match=txt.match(/\{[\s\S]*\}/);
       if(match){
-        try{
-          const parsed=JSON.parse(match[0]);
-          applyReal(parsed);
-          setDataSource(true);
-          showToast('success','✅ Data Real IDX Dimuat!','Harga terkini dari IDX via web search berhasil diperbarui.');
+        try{const parsed=JSON.parse(match[0]);applyReal(parsed);setDataSource(true);showToast('success','✅ Data Real IDX Dimuat!','Harga terkini dari IDX berhasil diperbarui.');
         }catch(e){setDataSource(false);}
       }else setDataSource(false);
     }else setDataSource(false);
-  }catch(e){setDataSource(false);showToast('info','Mode Simulasi Aktif','Data real tidak tersedia. Simulasi harga IDX berjalan otomatis.');}
+  }catch(e){setDataSource(false);showToast('info','Mode Simulasi','Data real tidak tersedia. Simulasi harga IDX berjalan.');}
   if(btn)btn.classList.remove('loading');
   setEl('liveTxt','Live Data');
 }
@@ -1076,26 +1160,20 @@ async function fetchAllData(){
 function applyReal(parsed){
   Object.keys(parsed).forEach(sym=>{
     const d=parsed[sym];
-    if(sym==='IHSG'){
-      ST.ihsg.price=d.price||ST.ihsg.price;
-      if(d.pct!==undefined)ST.ihsg.open=Math.round(d.price/(1+d.pct/100));
-    }else if(BASE[sym]){
-      if(d.price){
-        ST.prices[sym]=d.price;
-        if(d.pct!==undefined)ST.opens[sym]=Math.round(d.price/(1+d.pct/100));
-        else ST.opens[sym]=ST.opens[sym]||d.price;
-        ST.highs[sym]=d.price;ST.lows[sym]=d.price;
-      }
+    if(sym==='IHSG'){ST.ihsg.price=d.price||ST.ihsg.price;if(d.pct!==undefined)ST.ihsg.open=Math.round(d.price/(1+d.pct/100));}
+    else if(BASE[sym]){
+      if(d.price){ST.prices[sym]=d.price;if(d.pct!==undefined)ST.opens[sym]=Math.round(d.price/(1+d.pct/100));else ST.opens[sym]=ST.opens[sym]||d.price;ST.highs[sym]=d.price;ST.lows[sym]=d.price;}
     }
   });
   updatePriceHdr(ST.sym);buildWatchlist();buildScr();updatePortfolio();updateIHSG();buildStratPanel();
   setEl('lastUpd','Update: '+new Date().toLocaleTimeString('id-ID'));
+  updateChartHeaderInfo(ST.sym);
 }
 
 function setDataSource(isReal){
   ST.isLive=isReal;
   const pill=document.getElementById('dataPill'),txt=document.getElementById('dataSrcTxt');
-  if(pill){pill.className='data-pill '+(isReal?'live':'sim');}
+  if(pill)pill.className='data-pill '+(isReal?'live':'sim');
   if(txt)txt.textContent=isReal?'IDX Real-time':'Simulasi';
   const sp=document.getElementById('scrPill'),st=document.getElementById('scrUpdTxt');
   if(sp)sp.className='data-pill '+(isReal?'live':'sim');
@@ -1111,30 +1189,92 @@ function updateIHSG(){
   if(chgEl){chgEl.textContent=(pct>=0?'+':'')+pct.toFixed(2)+'%';chgEl.style.color=pct>=0?'var(--green)':'var(--red)';}
 }
 
-// ─── PRICE HEADER ───
+// ─── CHART HEADER INFO (TradingView style) ───
+function updateChartHeaderInfo(sym){
+  const price=ST.prices[sym]||BASE[sym];
+  const open=ST.opens[sym]||BASE[sym];
+  const high=ST.highs[sym]||price;
+  const low=ST.lows[sym]||price;
+  const pct=(price-open)/open*100;
+  const isUp=pct>=0;
+  const pctStr=(isUp?'+':'')+pct.toFixed(2)+'%';
+
+  // Dashboard chart header
+  setEl('ch-sym',sym);
+  setEl('ch-open',fmt(open));
+  setEl('ch-high',fmt(high));
+  setEl('ch-low',fmt(low));
+  setEl('ch-close',fmt(price));
+  const cpctEl=document.getElementById('ch-pct');
+  if(cpctEl){cpctEl.textContent=pctStr;cpctEl.style.color=isUp?'var(--green)':'var(--red)';}
+  setEl('ch-vol',VOL[sym]||'—');
+
+  // Analytics chart header
+  setEl('ach-sym',sym);
+  setEl('ach-open',fmt(open));
+  setEl('ach-high',fmt(high));
+  setEl('ach-low',fmt(low));
+  setEl('ach-close',fmt(price));
+  const apctEl=document.getElementById('ach-pct');
+  if(apctEl){apctEl.textContent=pctStr;apctEl.style.color=isUp?'var(--green)':'var(--red)';}
+}
+
+// ─── PRICE HEADER — Enhanced ───
 function updatePriceHdr(sym){
-  const price=ST.prices[sym]||BASE[sym]||0;
+  const price=ST.prices[sym]||BASE[sym];
   const open=ST.opens[sym]||BASE[sym]||price;
   const fund=FUND[sym]||{};
+  const w52=W52[sym]||{h:Math.round(price*1.15),l:Math.round(price*0.85)};
   const chg=price-open,pct=open>0?chg/open*100:0;
-  setEl('ph-sym',sym+' / IDR');setEl('ph-price',fmt(price));
-  const ce=document.getElementById('ph-chg');
-  if(ce){ce.textContent=(pct>=0?'▲ +':'▼ ')+fmt(Math.abs(chg))+' ('+(pct>=0?'+':'')+pct.toFixed(2)+'%)';ce.className='ph-chg '+(pct>=0?'up':'dn');}
+  const isUp=pct>=0;
+
+  // Symbol info
+  setEl('ph-sym',sym+' / IDX · '+ST.tf);
+  setEl('ph-company',NAMES[sym]||sym);
+
+  // Price
+  setEl('ph-price',fmt(price));
+
+  // Change badge
+  const badge=document.getElementById('ph-chg-badge');
+  if(badge){
+    badge.textContent=(isUp?'▲ +':'▼ ')+fmt(Math.abs(Math.round(chg)))+' ('+(isUp?'+':'')+pct.toFixed(2)+'%)';
+    badge.className='ph-chg-badge '+(isUp?'up':'dn');
+  }
+
+  // OHLCV
   setEl('ph-open',fmt(open));
   setEl('ph-high',fmt(ST.highs[sym]||Math.round(Math.max(price,open)*1.003)));
   setEl('ph-low',fmt(ST.lows[sym]||Math.round(Math.min(price,open)*0.997)));
-  setEl('ph-vol',VOL[sym]||'—');setEl('ph-mcap',fund.mcap||'—');
-  setEl('ph-pe',fund.pe&&fund.pe>0?fund.pe+'x':'N/A');setEl('ph-div',fund.divY?fund.divY+'%':'—');
+  setEl('ph-close',fmt(price));
+  setEl('ph-vol',VOL[sym]||'—');
+
+  // 52W
+  setEl('ph-52h',fmt(w52.h));
+  setEl('ph-52l',fmt(w52.l));
+
+  // Fundamentals
+  setEl('ph-mcap',fund.mcap||'—');
+  setEl('ph-pe',fund.pe&&fund.pe>0?fund.pe+'x':'N/A');
+  setEl('ph-div',fund.divY?fund.divY+'%':'—');
+  setEl('ph-beta',fund.beta?fund.beta+'β':'—');
+  setEl('ph-sector',SECTOR_LABEL[fund.sec]||'—');
+  setEl('ph-roe',fund.roe?fund.roe+'%':'—');
+
+  // Order
   setEl('orderSym',sym);
   const mh=document.getElementById('mktHint');if(mh)mh.textContent='Mkt: '+fmt(price);
-  const op=document.getElementById('orderPrice');
-  if(op&&(+op.value===0||op.value==='')){
-    op.value=price;
+  const op2=document.getElementById('orderPrice');
+  if(op2&&(+op2.value===0||op2.value==='')){
+    op2.value=price;
     const sl=document.getElementById('slPrice'),tp=document.getElementById('tpPrice');
     if(sl&&+sl.value===0)sl.value=Math.round(price*0.97);
     if(tp&&+tp.value===0)tp.value=Math.round(price*1.05);
     calcRisk();
   }
+
+  // Chart symbol header update
+  updateChartHeaderInfo(sym);
 }
 
 // ─── CHART ENGINE ───
@@ -1161,97 +1301,159 @@ function updateChartLive(){
   drawChart();
 }
 
+// Generate date labels for candles
+function getCandleDates(count){
+  const dates=[];
+  const now=new Date();
+  let d=new Date(now);
+  let added=0;
+  while(added<count){
+    if(d.getDay()!==0&&d.getDay()!==6)dates.unshift(new Date(d));
+    d.setDate(d.getDate()-1);
+    added++;
+    if(added>count*2)break;
+  }
+  return dates.slice(-count);
+}
+
 function drawChart(canvasId='mainCanvas'){
   const canvas=document.getElementById(canvasId);if(!canvas)return;
   const W=canvas.parentElement.clientWidth||600;
-  const H=canvasId==='mainCanvas'?260:290;
+  const H=canvasId==='mainCanvas'?280:290;
   canvas.width=W;canvas.height=H;
   const ctx=canvas.getContext('2d');
   const sym=ST.sym,data=ST.chartData[sym];
   if(!data||data.length<3)return;
-  const padL=58,padR=8,padT=10;
-  const volH=(ST.showVol&&canvasId==='mainCanvas')?44:0;
-  const padB=volH+22;
+  const padL=62,padR=10,padT=12;
+  const showV=(canvasId==='mainCanvas'?ST.showVol:false);
+  const volH=showV?46:0;
+  const padB=volH+32;
   const cw=W-padL-padR,ch=H-padT-padB;
   let maxP=Math.max(...data.map(d=>d.h)),minP=Math.min(...data.map(d=>d.l));
   const pp=(maxP-minP)*.05;maxP+=pp;minP-=pp;
   const range=maxP-minP||1;
   const toY=p=>padT+((maxP-p)/range)*ch,toX=i=>padL+(i/(data.length-1))*cw;
   ctx.clearRect(0,0,W,H);
-  // Grid
+
+  // Grid + price labels
   ctx.strokeStyle='rgba(255,255,255,0.028)';ctx.lineWidth=1;
-  for(let i=0;i<=6;i++){const y=padT+(ch/6)*i;ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();
+  for(let i=0;i<=6;i++){
+    const y=padT+(ch/6)*i;
+    ctx.beginPath();ctx.moveTo(padL,y);ctx.lineTo(W-padR,y);ctx.stroke();
     ctx.fillStyle='#2e4a68';ctx.font='8.5px JetBrains Mono,monospace';ctx.textAlign='right';
-    ctx.fillText(fmt(Math.round(maxP-(range/6)*i)),padL-3,y+3);}
+    ctx.fillText(fmt(Math.round(maxP-(range/6)*i)),padL-4,y+3);
+  }
+
+  // Date labels on x-axis
+  const dates=getCandleDates(data.length);
+  const months=['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+  ctx.fillStyle='#2e4a68';ctx.font='7.5px JetBrains Mono,monospace';ctx.textAlign='center';
+  const labelEvery=Math.max(1,Math.floor(data.length/8));
+  for(let i=0;i<data.length;i+=labelEvery){
+    const x=toX(i);
+    const dt=dates[i]||new Date();
+    ctx.fillText(`${dt.getDate()} ${months[dt.getMonth()]}`,x,H-padB+18);
+  }
   ctx.textAlign='left';
-  // Fibonacci overlay
-  if(ST.showFib){
+
+  // FIB overlay
+  if((canvasId==='mainCanvas'&&ST.showFib)||(canvasId==='analyticsCanvas'&&ST.analShowFib)){
     const w52=W52[sym]||{h:maxP,l:minP};const hi=w52.h,lo=w52.l,fr=hi-lo;
     [0,.236,.382,.5,.618,.786,1].forEach((f,idx)=>{
       const fp=hi-f*fr;if(fp<minP||fp>maxP)return;
       const fy=toY(fp),colors=['rgba(255,255,255,.06)','rgba(34,197,94,.18)','rgba(56,189,248,.18)','rgba(245,158,11,.28)','rgba(34,197,94,.28)','rgba(34,197,94,.38)','rgba(255,255,255,.06)'];
       ctx.setLineDash([3,5]);ctx.strokeStyle=colors[idx];ctx.lineWidth=1;
       ctx.beginPath();ctx.moveTo(padL,fy);ctx.lineTo(W-padR,fy);ctx.stroke();
+      ctx.fillStyle=colors[idx].replace('rgba','rgba').replace(/,[\d.]+\)$/,',.9)');
+      ctx.font='7px JetBrains Mono,monospace';ctx.textAlign='right';
+      ctx.fillText([0,.236,.382,.5,.618,.786,1][idx]*100+'%',padL-4,fy+3);
+      ctx.textAlign='left';
     });ctx.setLineDash([]);
   }
+
   // VWAP
-  if(ST.showVWAP&&data.length>5){
+  const showVwap=(canvasId==='mainCanvas'&&ST.showVWAP)||(canvasId==='analyticsCanvas'&&ST.analShowVWAP);
+  if(showVwap&&data.length>5){
     let cPV=0,cV=0;ctx.beginPath();ctx.strokeStyle='rgba(245,158,11,.7)';ctx.lineWidth=1.3;let fv=true;
     data.forEach((d,i)=>{const tp=(d.h+d.l+d.c)/3;cPV+=tp*d.vol;cV+=d.vol;const vwap=cV>0?cPV/cV:tp;
       fv?ctx.moveTo(toX(i),toY(vwap)):ctx.lineTo(toX(i),toY(vwap));fv=false;});ctx.stroke();
   }
-  // EMA
-  if(ST.showEMA&&data.length>=20){
+
+  // EMA overlay
+  const showEma=(canvasId==='mainCanvas'&&ST.showEMA);
+  if(showEma&&data.length>=20){
     let e12=data[0].c,e26=data[0].c;const e12a=[],e26a=[];
     data.forEach(d=>{e12=d.c*(2/13)+e12*(11/13);e26=d.c*(2/27)+e26*(25/27);e12a.push(e12);e26a.push(e26);});
     [[e12a,'rgba(56,189,248,.65)'],[e26a,'rgba(167,139,250,.65)']].forEach(([arr,col])=>{
       ctx.beginPath();ctx.strokeStyle=col;ctx.lineWidth=1.3;
       arr.forEach((e,i)=>i?ctx.lineTo(toX(i),toY(e)):ctx.moveTo(toX(i),toY(e)));ctx.stroke();});
   }
+
   // BB
-  if(ST.showBB&&data.length>=20){
+  const showBB=(canvasId==='mainCanvas'&&ST.showBB)||(canvasId==='analyticsCanvas'&&ST.analShowBB);
+  if(showBB&&data.length>=20){
     const cl=data.map(d=>d.c),ubA=[],lbA=[];
-    for(let i=19;i<data.length;i++){const sl=cl.slice(i-19,i+1),mn=sl.reduce((a,b)=>a+b,0)/20,sd=Math.sqrt(sl.reduce((a,b)=>a+(b-mn)**2,0)/20);
+    for(let i=19;i<data.length;i++){const sl2=cl.slice(i-19,i+1),mn=sl2.reduce((a,b)=>a+b,0)/20,sd=Math.sqrt(sl2.reduce((a,b)=>a+(b-mn)**2,0)/20);
       ubA.push({x:toX(i),y:toY(mn+2*sd)});lbA.push({x:toX(i),y:toY(mn-2*sd)});}
     ctx.strokeStyle='rgba(167,139,250,.28)';ctx.lineWidth=1;
     [ubA,lbA].forEach(arr=>{ctx.beginPath();arr.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));ctx.stroke();});
     const g=ctx.createLinearGradient(0,padT,0,padT+ch);g.addColorStop(0,'rgba(167,139,250,.03)');g.addColorStop(1,'rgba(167,139,250,.01)');
     ctx.beginPath();ubA.forEach((p,i)=>i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y));lbA.slice().reverse().forEach(p=>ctx.lineTo(p.x,p.y));ctx.closePath();ctx.fillStyle=g;ctx.fill();
   }
+
   // MA
-  if(ST.showMA){[[20,'rgba(56,189,248,.65)'],[50,'rgba(245,158,11,.65)']].forEach(([period,col])=>{
-    if(data.length<period)return;ctx.beginPath();ctx.strokeStyle=col;ctx.lineWidth=1.4;let f=true;
-    for(let i=period-1;i<data.length;i++){const ma=data.slice(i-period+1,i+1).reduce((s,d)=>s+d.c,0)/period;
-      f?ctx.moveTo(toX(i),toY(ma)):ctx.lineTo(toX(i),toY(ma));f=false;}ctx.stroke();});}
+  const showMA=(canvasId==='mainCanvas'&&ST.showMA)||(canvasId==='analyticsCanvas'&&ST.analShowMA);
+  if(showMA){
+    [[20,'rgba(56,189,248,.65)','MA20'],[50,'rgba(245,158,11,.65)','MA50']].forEach(([period,col,lbl])=>{
+      if(data.length<period)return;ctx.beginPath();ctx.strokeStyle=col;ctx.lineWidth=1.4;let f=true;
+      for(let i=period-1;i<data.length;i++){const ma=data.slice(i-period+1,i+1).reduce((s,d)=>s+d.c,0)/period;
+        f?ctx.moveTo(toX(i),toY(ma)):ctx.lineTo(toX(i),toY(ma));f=false;}ctx.stroke();
+      // Label at end
+      const lastMA=data.slice(-period).reduce((s,d)=>s+d.c,0)/period;
+      const labelY=toY(lastMA);
+      ctx.fillStyle=col;ctx.font='7.5px JetBrains Mono,monospace';ctx.textAlign='left';
+      ctx.fillText(lbl,W-padR+2,labelY+3);
+    });
+  }
+
   // Area gradient
-  const isUp=data[data.length-1].c>=data[0].c;
+  const isUp2=data[data.length-1].c>=data[0].c;
   const ag=ctx.createLinearGradient(0,padT,0,padT+ch);
-  ag.addColorStop(0,isUp?'rgba(34,197,94,.08)':'rgba(239,68,68,.08)');ag.addColorStop(1,'rgba(0,0,0,0)');
+  ag.addColorStop(0,isUp2?'rgba(34,197,94,.08)':'rgba(239,68,68,.08)');ag.addColorStop(1,'rgba(0,0,0,0)');
   ctx.beginPath();ctx.moveTo(toX(0),padT+ch);data.forEach((d,i)=>ctx.lineTo(toX(i),toY(d.c)));ctx.lineTo(toX(data.length-1),padT+ch);ctx.closePath();ctx.fillStyle=ag;ctx.fill();
+
   // Candles
-  const cw2=Math.max(1.5,(cw/data.length)*.5);
+  const cw2=Math.max(1.5,(cw/data.length)*.55);
   data.forEach((d,i)=>{const x=toX(i),bull=d.c>=d.o;
     ctx.strokeStyle=bull?'#22c55e':'#ef4444';ctx.lineWidth=1;
     ctx.beginPath();ctx.moveTo(x,toY(d.h));ctx.lineTo(x,toY(d.l));ctx.stroke();
-    ctx.fillStyle=bull?'rgba(34,197,94,.72)':'rgba(239,68,68,.72)';
+    ctx.fillStyle=bull?'rgba(34,197,94,.75)':'rgba(239,68,68,.75)';
     ctx.fillRect(x-cw2/2,Math.min(toY(d.o),toY(d.c)),cw2,Math.max(Math.abs(toY(d.c)-toY(d.o)),1.5));});
-  // Price line
+
+  // Price line + label
   const lp=data[data.length-1].c,ly=toY(lp);
   ctx.setLineDash([4,5]);ctx.strokeStyle='rgba(56,189,248,.4)';ctx.lineWidth=1;
   ctx.beginPath();ctx.moveTo(padL,ly);ctx.lineTo(W-padR,ly);ctx.stroke();ctx.setLineDash([]);
-  ctx.fillStyle='#38bdf8';ctx.fillRect(W-padR-54,ly-8,54,16);
+  const labelW=54;
+  ctx.fillStyle='#38bdf8';ctx.fillRect(W-padR-labelW,ly-9,labelW,18);
   ctx.fillStyle='#000';ctx.font='bold 8.5px JetBrains Mono,monospace';ctx.textAlign='center';
-  ctx.fillText(fmt(Math.round(lp)),W-padR-27,ly+4);ctx.textAlign='left';
-  // Volume
-  if(ST.showVol&&canvasId==='mainCanvas'){
+  ctx.fillText(fmt(Math.round(lp)),W-padR-labelW/2,ly+4);ctx.textAlign='left';
+
+  // Volume bars
+  if(showV){
     const vols=data.map(d=>d.vol||0),maxV=Math.max(...vols)||1,vBase=H-padB+volH;
-    data.forEach((d,i)=>{const x=toX(i),vH=((d.vol||0)/maxV)*(volH-4);
-      ctx.fillStyle=d.c>=d.o?'rgba(34,197,94,.3)':'rgba(239,68,68,.3)';
+    data.forEach((d,i)=>{const x=toX(i),vH=((d.vol||0)/maxV)*(volH-6);
+      ctx.fillStyle=d.c>=d.o?'rgba(34,197,94,.32)':'rgba(239,68,68,.32)';
       ctx.fillRect(x-cw2/2,vBase-vH,cw2,vH);});
-    ctx.strokeStyle='rgba(255,255,255,.03)';ctx.lineWidth=1;
+    // VOL label
+    ctx.fillStyle='#2e4a68';ctx.font='7.5px JetBrains Mono,monospace';ctx.textAlign='left';
+    ctx.fillText('VOL',2,vBase-2);
+    // Divider
+    ctx.strokeStyle='rgba(255,255,255,.04)';ctx.lineWidth=1;
     ctx.beginPath();ctx.moveTo(padL,vBase-volH+4);ctx.lineTo(W-padR,vBase-volH+4);ctx.stroke();
-    ctx.fillStyle='#2e4a68';ctx.font='7.5px JetBrains Mono,monospace';ctx.fillText('VOL',2,vBase-2);
   }
+
+  ctx.textAlign='left';
 }
 
 // ─── INDICATOR MATH ───
@@ -1259,15 +1461,7 @@ function calcRSI(cl,p=14){if(cl.length<p+1)return 50;let g=0,l=0;for(let i=cl.le
 function calcEMAArr(d,p){const k=2/(p+1);let e=d[0];const a=[e];for(let i=1;i<d.length;i++){e=d[i]*k+e*(1-k);a.push(e);}return a;}
 function calcEMA(d,p){return calcEMAArr(d,p)[d.length-1];}
 function calcSMA(d,p){if(d.length<p)return d[d.length-1]||0;return d.slice(-p).reduce((a,b)=>a+b,0)/p;}
-function calcMACD(cl){
-  if(cl.length<27)return{macd:0,signal:0,hist:0};
-  const ema12=calcEMAArr(cl,12),ema26=calcEMAArr(cl,26);
-  const macdArr=ema12.map((v,i)=>v-(ema26[i]||v));
-  const macd=macdArr[macdArr.length-1];
-  const sigArr=calcEMAArr(macdArr.slice(-9),9);
-  const signal=sigArr[sigArr.length-1];
-  return{macd,signal,hist:macd-signal};
-}
+function calcMACD(cl){if(cl.length<27)return{macd:0,signal:0,hist:0};const ema12=calcEMAArr(cl,12),ema26=calcEMAArr(cl,26);const macdArr=ema12.map((v,i)=>v-(ema26[i]||v));const macd=macdArr[macdArr.length-1];const sigArr=calcEMAArr(macdArr.slice(-9),9);const signal=sigArr[sigArr.length-1];return{macd,signal,hist:macd-signal};}
 function calcStoch(d,k=14){if(d.length<k)return{k:50};const sl=d.slice(-k),hi=Math.max(...sl.map(x=>x.h)),lo=Math.min(...sl.map(x=>x.l));return{k:hi===lo?50:((sl[sl.length-1].c-lo)/(hi-lo))*100};}
 function calcBB(cl,p=20){if(cl.length<p)return{upper:0,middle:0,lower:0,pct:.5,bw:0};const sl=cl.slice(-p),mn=sl.reduce((a,b)=>a+b,0)/p,sd=Math.sqrt(sl.reduce((a,b)=>a+(b-mn)**2,0)/p);const upper=mn+2*sd,lower=mn-2*sd,last=cl[cl.length-1];return{upper,middle:mn,lower,pct:(upper-lower)>0?(last-lower)/(upper-lower):.5,bw:(upper-lower)/mn};}
 function calcCCI(d,p=20){if(d.length<p)return 0;const sl=d.slice(-p),tp=sl.map(x=>(x.h+x.l+x.c)/3),mn=tp.reduce((a,b)=>a+b,0)/p,md=tp.reduce((a,b)=>a+Math.abs(b-mn),0)/p;return md===0?0:(tp[tp.length-1]-mn)/(.015*md);}
@@ -1287,7 +1481,7 @@ function updateInd(){
   const{macd,signal,hist}=calcMACD(cl);const mPct=Math.min(100,Math.max(0,50+(macd/(cl[cl.length-1]||1))*600));
   setInd('macd',(macd>=0?'+':'')+macd.toFixed(1),macd>signal?'buy':'sell',mPct,macd>0?'b':'r','Sig:'+signal.toFixed(1)+' Hist:'+(hist>=0?'+':'')+hist.toFixed(1));
   const{k:sk}=calcStoch(data);setInd('stoch',sk.toFixed(1),sk>80?'sell':sk<20?'buy':'neutral',sk,'y',sk>80?'Jenuh beli':sk<20?'Jenuh jual':'Normal ('+sk.toFixed(0)+')');
-  const bb=calcBB(cl);setInd('bb',bb.pct.toFixed(2),bb.pct>1?'sell':bb.pct<0?'buy':bb.pct>0.6?'buy':'neutral',bb.pct*100,'b','BW:'+( bb.bw*100).toFixed(1)+'% Mid:'+fmt(Math.round(bb.middle)));
+  const bb=calcBB(cl);setInd('bb',bb.pct.toFixed(2),bb.pct>1?'sell':bb.pct<0?'buy':bb.pct>0.6?'buy':'neutral',bb.pct*100,'b','BW:'+(bb.bw*100).toFixed(1)+'% Mid:'+fmt(Math.round(bb.middle)));
   const cci=calcCCI(data);const cciSig=cci>100?'sell':cci<-100?'buy':'neutral';setInd('cci',(cci>=0?'+':'')+cci.toFixed(0),cciSig,Math.min(100,Math.max(0,50+cci/4)),'b','');
   const atr=calcATR(data),atrP=(atr/(cl[cl.length-1]||1))*100;setInd('atr',fmt(Math.round(atr)),'neutral',Math.min(100,atrP*20),'y','');
   const ae=document.getElementById('atr-sig');if(ae){ae.textContent=atrP>2?'HIGH':atrP<.8?'LOW':'MED';ae.className='ind-sig '+(atrP>2?'sell':'neutral');}
@@ -1303,9 +1497,15 @@ function updateInd(){
   const mae=(id,val)=>{const el=document.getElementById(id);if(!el)return;el.textContent=fmt(Math.round(val))+(p>val?' ▲':' ▼');el.className='rval '+(p>val?'g':'r');};
   mae('ma5',calcEMA(cl.slice(-10),5));mae('ma10',calcEMA(cl.slice(-20),10));
   mae('ma20',calcSMA(cl,20));mae('ma50',calcSMA(cl,Math.min(50,cl.length)));mae('ma200',calcSMA(cl,Math.min(200,cl.length)));
-  // Signal badge count
-  const buys=['rsi-sig','macd-sig','bb-sig','stoch-sig'].filter(id=>{const el=document.getElementById(id);return el&&el.textContent==='BUY';}).length;
-  const badge=document.getElementById('sbBadge');if(badge){badge.textContent=buys;badge.className='sb-badge'+(buys>=3?'':buys>=1?' gold':' red');}
+  // Signal summary
+  let buyCnt=0,sellCnt=0;
+  ['rsi-sig','macd-sig','bb-sig','stoch-sig','cci-sig','adx-sig'].forEach(id=>{
+    const el=document.getElementById(id);if(!el)return;
+    if(el.textContent==='BUY')buyCnt++;else if(el.textContent==='SELL')sellCnt++;
+  });
+  const sumEl=document.getElementById('ind-sig-sum');
+  if(sumEl)sumEl.textContent=`${buyCnt} BUY · ${sellCnt} SELL · ${6-buyCnt-sellCnt} HOLD`;
+  const badge=document.getElementById('sbBadge');if(badge){badge.textContent=buyCnt;badge.className='sb-badge'+(buyCnt>=4?'':buyCnt>=2?' gold':' red');}
 }
 function setInd(id,val,sig,pct,cc,extra){
   const v=document.getElementById(id+'-val'),s=document.getElementById(id+'-sig'),b=document.getElementById(id+'-bar'),e=document.getElementById(id+'-extra');
@@ -1314,17 +1514,17 @@ function setInd(id,val,sig,pct,cc,extra){
   if(b){b.style.width=Math.min(100,Math.max(0,pct))+'%';b.className='ind-fill '+cc;}
   if(e&&extra!==undefined)e.textContent=extra;
 }
-function updateIndTime(){const el=document.getElementById('indTime');if(el)el.textContent='Live · '+new Date().toLocaleTimeString('id-ID');}
+function updateIndTime(){
+  const el=document.getElementById('indTime');if(el)el.textContent='Live · '+new Date().toLocaleTimeString('id-ID');
+}
 
-// ─── ENHANCED AI MULTI-LAYER ANALYSIS ───
+// ─── COMPUTE AI SCORE ───
 function computeAIScore(sym){
   const price=ST.prices[sym]||BASE[sym];
   const fund=FUND[sym]||{};
   const data=ST.chartData[sym];
-  const ctx=AI_CONTEXT[sym];
+  const ctx2=AI_CONTEXT[sym];
   let techScore=50,fundScore=50,momScore=50,sentScore=50,growthScore=50;
-
-  // Technical (35%)
   if(data&&data.length>20){
     const cl=data.map(d=>d.c);
     const rsi=calcRSI(cl);const{macd,signal}=calcMACD(cl);const{k:sk}=calcStoch(data);
@@ -1336,48 +1536,37 @@ function computeAIScore(sym){
     if(bb.pct<.15)t+=16;else if(bb.pct<.3)t+=8;else if(bb.pct>.85)t-=12;else if(bb.pct>.7)t-=6;
     if(adx>30&&macd>signal)t+=18;else if(adx>25)t+=10;else if(adx<15)t-=4;
     if(cci<-100)t+=12;else if(cci>100)t-=10;
-    // MA alignment
     const sma20=calcSMA(cl,20),sma50=calcSMA(cl,Math.min(50,cl.length));
     if(price>sma20&&price>sma50&&sma20>sma50)t+=14;else if(price<sma20&&price<sma50)t-=12;
     techScore=Math.min(96,Math.max(8,50+t));
   }
-
-  // Fundamental (30%)
   if(fund.pe&&fund.pe>0){if(fund.pe<8)fundScore+=26;else if(fund.pe<12)fundScore+=18;else if(fund.pe<18)fundScore+=8;else if(fund.pe>30)fundScore-=16;else if(fund.pe>25)fundScore-=8;}
   if(fund.roe>0){if(fund.roe>22)fundScore+=22;else if(fund.roe>16)fundScore+=12;else if(fund.roe>10)fundScore+=5;else if(fund.roe<5)fundScore-=10;}
   if(fund.divY>0){if(fund.divY>9)fundScore+=18;else if(fund.divY>6)fundScore+=12;else if(fund.divY>3)fundScore+=6;}
   if(fund.de>0){if(fund.de<.3)fundScore+=12;else if(fund.de<1)fundScore+=6;else if(fund.de>8&&fund.de<12)fundScore-=8;else if(fund.de>12)fundScore-=16;}
   if(fund.pbv>0&&fund.pbv<1.2)fundScore+=12;
   fundScore=Math.min(96,Math.max(8,fundScore));
-
-  // Momentum (15%) — day performance
-  const open=ST.opens[sym]||price;
-  const dayPct=(price-open)/open*100;
+  const open=ST.opens[sym]||price,dayPct=(price-open)/open*100;
   if(dayPct>2.5)momScore+=25;else if(dayPct>1)momScore+=15;else if(dayPct>0)momScore+=6;
   else if(dayPct<-2.5)momScore-=22;else if(dayPct<-1)momScore-=12;else if(dayPct<0)momScore-=4;
-  // 52W position
   const w52=W52[sym]||{h:price*1.15,l:price*0.85};
   const w52pos=(price-w52.l)/(w52.h-w52.l||1)*100;
   if(w52pos<20)momScore+=15;else if(w52pos<35)momScore+=8;else if(w52pos>80)momScore-=10;
   momScore=Math.min(96,Math.max(8,momScore));
-
-  // Sentiment / News (10%)
-  if(ctx){sentScore=ctx.sentiment||50;}
-  else{sentScore=Math.round(50+Math.random()*10);}
-
-  // Growth (10%)
+  sentScore=ctx2?ctx2.sentiment||50:Math.round(50+Math.random()*10);
   if(fund.net_profit_growth){if(fund.net_profit_growth>30)growthScore+=30;else if(fund.net_profit_growth>15)growthScore+=20;else if(fund.net_profit_growth>5)growthScore+=10;else if(fund.net_profit_growth<0)growthScore-=15;}
   if(fund.revenue_growth>15)growthScore+=10;else if(fund.revenue_growth>8)growthScore+=5;
   growthScore=Math.min(96,Math.max(8,growthScore));
-
   const composite=Math.round(techScore*.35+fundScore*.30+momScore*.15+sentScore*.10+growthScore*.10);
   return{composite,techScore:Math.round(techScore),fundScore:Math.round(fundScore),momScore:Math.round(momScore),sentScore:Math.round(sentScore),growthScore:Math.round(growthScore)};
 }
 
+// ─── UPDATE AI PANEL (Enhanced with target prices) ───
 function updateAI(sym){
   const ctx2=AI_CONTEXT[sym];
   const scores=computeAIScore(sym);
   const conf=ctx2?Math.round(ctx2.conf*.55+scores.composite*.45):scores.composite;
+  const price=ST.prices[sym]||BASE[sym];
   const titleEl=document.getElementById('aiTitle'),descEl=document.getElementById('aiDesc');
   const tagsEl=document.getElementById('aiTags'),sigBadge=document.getElementById('aiSigBadge');
   if(!titleEl)return;
@@ -1387,37 +1576,57 @@ function updateAI(sym){
   titleEl.style.color=cls==='buy'?'var(--green)':cls==='sell'?'var(--red)':cls==='spec'?'var(--purple)':'var(--gold)';
   if(descEl){
     const reasoning=ctx2?.reasoning||'Menganalisis data teknikal dan fundamental saham...';
-    const newsInfo=ctx2?.news?`<br><span style="color:var(--cyan);font-size:9.5px;">📰 BERITA: ${ctx2.news}</span>`:'';
+    const newsInfo=ctx2?.news?`<br><span style="color:var(--cyan);font-size:9px;">📰 ${ctx2.news}</span>`:'';
     descEl.innerHTML=`${reasoning}${newsInfo}`;
   }
   if(sigBadge){sigBadge.textContent=sigText;sigBadge.className='ai-signal-badge '+(cls==='spec'?'spec':cls);}
   if(tagsEl){
     const w52=W52[sym]||{h:BASE[sym]*1.15,l:BASE[sym]*.85};
-    const price=ST.prices[sym]||BASE[sym];
     const w52pct=((price-w52.l)/(w52.h-w52.l||1)*100).toFixed(0);
-    const fund=FUND[sym]||{};
-    const tgts=ctx2?.targets;
     tagsEl.innerHTML=`
       <span class="ai-tag b">Tech ${scores.techScore}%</span>
       <span class="ai-tag g">Fund ${scores.fundScore}%</span>
-      <span class="ai-tag y">Momentum ${scores.momScore}%</span>
+      <span class="ai-tag y">Mom ${scores.momScore}%</span>
       <span class="ai-tag p">Sentimen ${scores.sentScore}%</span>
       <span class="ai-tag b">Growth ${scores.growthScore}%</span>
-      <span class="ai-tag ${w52pct<35?'g':'y'}">52W-Pos ${w52pct}%</span>
-      ${tgts?`<span class="ai-tag g">TP1: ${fmt(tgts.tp1)}</span><span class="ai-tag g">TP2: ${fmt(tgts.tp2)}</span><span class="ai-tag r">SL: ${fmt(tgts.sl)}</span>`:''}
+      <span class="ai-tag ${+w52pct<35?'g':'y'}">52W-Pos ${w52pct}%</span>
     `;
   }
+  // Update target price cards
+  const tgts=ctx2?.targets;
+  if(tgts){
+    const tp1pct=((tgts.tp1-price)/price*100).toFixed(1);
+    const tp2pct=((tgts.tp2-price)/price*100).toFixed(1);
+    const slpct=((tgts.sl-price)/price*100).toFixed(1);
+    setEl('tp1-val',fmt(tgts.tp1));
+    setEl('tp1-pct',(+tp1pct>=0?'+':'')+tp1pct+'% dari harga kini');
+    setEl('tp2-val',fmt(tgts.tp2));
+    setEl('tp2-pct',(+tp2pct>=0?'+':'')+tp2pct+'% dari harga kini');
+    setEl('sl-val',fmt(tgts.sl));
+    setEl('sl-pct',slpct+'% dari harga kini');
+  }else{
+    setEl('tp1-val','—');setEl('tp1-pct','Tidak tersedia');
+    setEl('tp2-val','—');setEl('tp2-pct','Tidak tersedia');
+    setEl('sl-val','—');setEl('sl-pct','Tidak tersedia');
+  }
+  // Sentiment
+  const sent=ctx2?.sentiment||scores.sentScore;
+  const sentEl=document.getElementById('news-sent');
+  if(sentEl){sentEl.textContent=sent+'%';sentEl.style.color=sent>=70?'var(--green)':sent>=50?'var(--gold)':'var(--red)';}
+  setEl('news-sent-sub',sent>=70?'Sentimen Bullish':sent>=50?'Netral / Mixed':'Sentimen Bearish');
+  // Last updated
+  setEl('ai-last-upd','Updated: '+new Date().toLocaleTimeString('id-ID'));
   animConf(conf);
 }
 
 function animConf(pct){
-  const c=144.5,offset=c-(pct/100)*c;
+  const c=157,offset=c-(pct/100)*c;
   const ring=document.getElementById('confRing'),lbl=document.getElementById('confPct');
   if(ring){ring.style.strokeDashoffset=offset;ring.style.stroke=pct>=68?'var(--green)':pct>=48?'var(--gold)':'var(--red)';}
   if(lbl){lbl.textContent=pct+'%';lbl.style.color=pct>=68?'var(--green)':pct>=48?'var(--gold)':'var(--red)';}
 }
 
-// ─── AI SCREENER SCORE (Enhanced Multi-Factor) ───
+// ─── AI SCREENER SCORE ───
 function getAIScreenerScore(sym){
   const scores=computeAIScore(sym);
   const price=ST.prices[sym]||BASE[sym];
@@ -1428,21 +1637,10 @@ function getAIScreenerScore(sym){
   const rsi=cl.length>14?calcRSI(cl):50;
   const{macd,signal}=cl.length>26?calcMACD(cl):{macd:0,signal:0};
   const bb=cl.length>20?calcBB(cl):{pct:.5,bw:0};
-  const dayPct=(price-open)/open*100;
-
   let signal_str='hold';
   if(scores.composite>=72){signal_str=scores.composite>=82?'strong_buy':'buy';}
   else if(scores.composite<=35)signal_str='sell';
-
-  return{
-    aiScore:scores.composite,
-    signal:signal_str,
-    rsi:rsi.toFixed(0),
-    macd_cross:macd>signal?'▲':'▼',
-    bb_pct:bb.pct.toFixed(2),
-    dayPct,
-    scores
-  };
+  return{aiScore:scores.composite,signal:signal_str,rsi:rsi.toFixed(0),macd_cross:macd>signal?'▲':'▼',bb_pct:bb.pct.toFixed(2),scores};
 }
 
 // ─── FUNDAMENTALS ───
@@ -1479,7 +1677,6 @@ function buildFibRows(sym){
 // ─── ANALYTICS PANEL ───
 function updateAnalPanel(sym){
   const price=ST.prices[sym]||BASE[sym];
-  const w52=W52[sym]||{h:price*1.15,l:price*.85};
   const r1=Math.round(price*1.038),r2=Math.round(price*1.075),r3=Math.round(price*1.118);
   const s1=Math.round(price*.962),s2=Math.round(price*.925),s3=Math.round(price*.888);
   setEl('snrCurrent',fmt(price));
@@ -1487,15 +1684,13 @@ function updateAnalPanel(sym){
   setEl('supLevels',`<span class="tag up">S1: ${fmt(s1)}</span><span class="tag up">S2: ${fmt(s2)}</span><span class="tag up">S3: ${fmt(s3)}</span>`);
 }
 
-// ─── STRATEGY SCREENER — Enhanced AI Algo ───
+// ─── STRATEGY SCREENER ───
 function buildStratPanel(){
   const panel=document.getElementById('strategyPanel');if(!panel)return;
   if(ST.stratTab==='all'){panel.innerHTML='<div style="font-size:10px;color:var(--txt3);padding:4px 0;">Pilih strategi untuk melihat rekomendasi saham intraday dari AI.</div>';return;}
-  const isPagi=ST.stratTab==='pagi';
-  const isSore=ST.stratTab==='sore';
-  const isSwing=ST.stratTab==='swing';
+  const isPagi=ST.stratTab==='pagi',isSore=ST.stratTab==='sore',isSwing=ST.stratTab==='swing';
   const results=[];
-  Object.keys(BASE).forEach(sym=>{
+  ALL_SYMS.forEach(sym=>{
     const price=ST.prices[sym]||BASE[sym],open=ST.opens[sym]||price;
     const fund=FUND[sym]||{},w52=W52[sym]||{h:price*1.15,l:price*.85};
     const dayPct=(price-open)/open*100;
@@ -1508,42 +1703,37 @@ function buildStratPanel(){
     const bb=cl.length>20?calcBB(cl):{pct:.5,bw:0};
     const w52pos=(price-w52.l)/(w52.h-w52.l||1)*100;
     const ctx2=AI_CONTEXT[sym];
-    let score=0,reasons=[];
-    let tp_pct=0,sl_pct=0;
-
+    let score=0,reasons=[];let tp_pct=0,sl_pct=0;
     if(isPagi){
-      // Beli Pagi Jual Sore: breakout momentum + volume + MACD bullish
       if(rsi>=38&&rsi<=65){score+=22;reasons.push(`RSI optimal (${rsi.toFixed(0)})`);}
-      else if(rsi<38&&rsi>=25){score+=14;reasons.push('RSI oversold — potensi rebound sesi 2');}
-      if(macd>signal&&adx>18){score+=22;reasons.push('MACD bullish + trend aktif (ADX '+adx.toFixed(0)+')');}
-      if(atrPct>=1.4){score+=18;reasons.push(`ATR tinggi ${atrPct.toFixed(1)}% — volatilitas intraday baik`);}
-      if(w52pos<38){score+=14;reasons.push('Dekat 52W low — support historis');}
-      if(dayPct>0.3&&dayPct<2.2){score+=12;reasons.push('Momentum pagi positif +'+dayPct.toFixed(1)+'%');}
+      else if(rsi<38&&rsi>=25){score+=14;reasons.push('RSI oversold');}
+      if(macd>signal&&adx>18){score+=22;reasons.push('MACD bullish + trend (ADX '+adx.toFixed(0)+')');}
+      if(atrPct>=1.4){score+=18;reasons.push(`ATR ${atrPct.toFixed(1)}% volatilitas baik`);}
+      if(w52pos<38){score+=14;reasons.push('Dekat 52W low');}
+      if(dayPct>0.3&&dayPct<2.2){score+=12;reasons.push('Momentum pagi +'+dayPct.toFixed(1)+'%');}
       if(fund.beta&&fund.beta>=.8&&fund.beta<=1.6){score+=8;reasons.push('Beta ideal ('+fund.beta+'β)');}
-      if(ctx2&&ctx2.sentiment>=70){score+=10;reasons.push('Sentimen berita positif ('+ctx2.sentiment+'%)');}
+      if(ctx2&&ctx2.sentiment>=70){score+=10;reasons.push('Sentimen positif');}
       tp_pct=Math.max(1.2,atrPct*1.1);sl_pct=Math.max(.7,atrPct*.65);
     }else if(isSore){
-      // Beli Sore Jual Besok Pagi: overnight gap up potential
-      if(rsi<=42){score+=30;reasons.push(`RSI rendah (${rsi.toFixed(0)}) — rebound pagi potensial`);}
-      if(dayPct<-1.2){score+=22;reasons.push('Oversold sore — buy the dip setup');}
-      if(w52pos<30){score+=16;reasons.push('Near 52W low — support historis kuat');}
-      if(fund.divY&&fund.divY>3){score+=14;reasons.push(`Dividen ${fund.divY}% — dukungan institusional`);}
+      if(rsi<=42){score+=30;reasons.push(`RSI rendah (${rsi.toFixed(0)})`);}
+      if(dayPct<-1.2){score+=22;reasons.push('Buy the dip setup');}
+      if(w52pos<30){score+=16;reasons.push('Near 52W low');}
+      if(fund.divY&&fund.divY>3){score+=14;reasons.push(`Dividen ${fund.divY}%`);}
       if(fund.pe&&fund.pe>0&&fund.pe<13){score+=10;reasons.push(`P/E murah ${fund.pe}x`);}
-      if(fund.beta&&fund.beta>=.55&&fund.beta<=1.2){score+=8;reasons.push('Beta stabil — cocok overnight');}
-      if(ctx2&&ctx2.sentiment>=65){score+=10;reasons.push('Sentimen berita positif');}
+      if(fund.beta&&fund.beta>=.55&&fund.beta<=1.2){score+=8;reasons.push('Beta stabil overnight');}
+      if(ctx2&&ctx2.sentiment>=65){score+=10;reasons.push('Sentimen positif');}
       tp_pct=Math.max(.8,atrPct*.85);sl_pct=Math.max(.4,atrPct*.48);
     }else if(isSwing){
-      // Swing 3-5 hari: strong trend + fundamental support
-      if(adx>25&&macd>signal){score+=28;reasons.push(`Trend kuat ADX ${adx.toFixed(0)} + MACD bullish`);}
-      if(rsi>=40&&rsi<=60){score+=18;reasons.push('RSI zona ideal swing beli');}
+      if(adx>25&&macd>signal){score+=28;reasons.push(`Trend kuat ADX ${adx.toFixed(0)}`);}
+      if(rsi>=40&&rsi<=60){score+=18;reasons.push('RSI zona ideal swing');}
       if(fund.roe&&fund.roe>14){score+=14;reasons.push(`ROE solid ${fund.roe}%`);}
-      if(bb.bw<.05){score+=12;reasons.push('BB squeeze — potensi breakout besar');}
-      if(w52pos<50){score+=10;reasons.push('Masih ada ruang naik ke 52W high');}
-      if(ctx2&&(ctx2.cls==='buy'||ctx2.cls==='strong_buy')){score+=14;reasons.push('AI signal: '+ctx2.signal);}
+      if(bb.bw<.05){score+=12;reasons.push('BB squeeze — potensi breakout');}
+      if(w52pos<50){score+=10;reasons.push('Masih ada ruang naik');}
+      if(ctx2&&(ctx2.cls==='buy')){score+=14;reasons.push('AI signal: '+ctx2.signal);}
       if(fund.net_profit_growth&&fund.net_profit_growth>10){score+=8;reasons.push(`Profit tumbuh ${fund.net_profit_growth}% YoY`);}
       tp_pct=Math.max(2.5,atrPct*2.2);sl_pct=Math.max(1.2,atrPct*1.1);
     }
-    if(score>=28) results.push({sym,price,open,dayPct,rsi,score,reasons:reasons.slice(0,3),tp_pct,sl_pct,target:Math.round(price*(1+tp_pct/100)),stop:Math.round(price*(1-sl_pct/100)),fund,atrPct,adx});
+    if(score>=28)results.push({sym,price,open,dayPct,rsi,score,reasons:reasons.slice(0,3),tp_pct,sl_pct,target:Math.round(price*(1+tp_pct/100)),stop:Math.round(price*(1-sl_pct/100)),fund,atrPct,adx});
   });
   results.sort((a,b)=>b.score-a.score);
   const top=results.slice(0,6);
@@ -1552,10 +1742,7 @@ function buildStratPanel(){
     const sc=r.score>=65?'s1':r.score>=45?'s2':'s3';
     const rr=(r.tp_pct/r.sl_pct).toFixed(1);
     return `<div class="strat-card" onclick="selSym(null,'${r.sym}');showSection('dashboard',null)">
-      <div class="strat-card-head">
-        <span class="strat-sym">${r.sym}</span>
-        <span class="strat-score-badge ${sc}">Skor ${r.score}</span>
-      </div>
+      <div class="strat-card-head"><span class="strat-sym">${r.sym}</span><span class="strat-score-badge ${sc}">Skor ${r.score}</span></div>
       <div style="font-size:8.5px;color:var(--txt3);">${NAMES[r.sym]?.split(' ').slice(0,3).join(' ')}</div>
       <div class="strat-row">
         <span class="strat-item">Harga: ${fmt(r.price)}</span>
@@ -1572,82 +1759,56 @@ function buildStratPanel(){
       </div>
     </div>`;}).join('')+'</div>';
 }
-
 function selStratTab(btn,tab){
   document.querySelectorAll('.strat-tab').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');ST.stratTab=tab;buildStratPanel();
 }
 
-// ─── NEWS AI (Fetch via Anthropic) ───
+// ─── NEWS AI ───
 async function fetchNewsAI(){
-  const el=document.getElementById('newsAiContent');
-  if(!el)return;
-  el.innerHTML='<div class="news-loading"><span class="spin" style="animation:spin .7s linear infinite;display:inline-block;">⟳</span> AI sedang mencari berita terkini IDX dan menganalisis dampaknya...</div>';
+  const el=document.getElementById('newsAiContent');if(!el)return;
+  el.innerHTML='<div class="news-loading"><span class="spin" style="animation:spin .7s linear infinite;display:inline-block;">⟳</span> AI sedang mencari berita terkini IDX...</div>';
   try{
-    const prompt=`Search for the latest Indonesian stock market (IDX/BEI) news from March 2026. Find 6-8 significant news items that affect IDX stocks. For each news item analyze: which stocks are impacted (BBCA, BMRI, BBRI, TLKM, ASII, GOTO, BREN, BNBR, ADRO, PTBA, ANTM etc), bullish/bearish/neutral sentiment, and expected price impact %.
-
-Return ONLY valid JSON array (no markdown):
-[
-  {"time":"10:15 · 28 Mar 2026","title":"BBCA cetak laba rekor Q4 2025 Rp 62.7 triliun, tumbuh 13.8% YoY","stocks":["BBCA"],"sentiment":"bullish","impact_pct":2.5,"category":"earnings","detail":"Laba bersih melampaui ekspektasi analis, kredit tumbuh 15% YoY"},
-  {"time":"09:30 · 28 Mar 2026","title":"Bank Indonesia pertahankan suku bunga 5.50% di RDG Maret 2026","stocks":["BBCA","BMRI","BBRI"],"sentiment":"neutral","impact_pct":0.8,"category":"monetary","detail":"Keputusan sesuai ekspektasi pasar, rupiah stabil"},
-  {"time":"08:45 · 28 Mar 2026","title":"BREN terima insentif energi terbarukan Rp 4.2 triliun dari ESDM","stocks":["BREN"],"sentiment":"bullish","impact_pct":3.8,"category":"policy","detail":"Program insentif EBT dorong ekspansi kapasitas 3x lipat"},
-  {"time":"14:00 · 27 Mar 2026","title":"BNBR Bakrie Brothers umumkan restrukturisasi utang dan divestasi aset","stocks":["BNBR","BUMI"],"sentiment":"bullish","impact_pct":5.2,"category":"corporate","detail":"Langkah restrukturisasi disambut positif investor"},
-  {"time":"11:00 · 27 Mar 2026","title":"Ekspor batu bara Indonesia naik 8.4% YoY, ADRO dan PTBA diuntungkan","stocks":["ADRO","PTBA","HRUM"],"sentiment":"bullish","impact_pct":2.1,"category":"commodity","detail":"Harga batu bara global stabil di USD 132/ton"},
-  {"time":"09:00 · 27 Mar 2026","title":"GoTo Group masih catat rugi Q4 meski revenue tumbuh 22%","stocks":["GOTO"],"sentiment":"bearish","impact_pct":-2.8,"category":"earnings","detail":"Net loss menyempit namun investor masih khawatir profitabilitas"}
-]`;
+    const prompt=`Search for latest Indonesian stock market (IDX/BEI) news March 2026. Find 6-8 significant news. Return ONLY valid JSON array: [{"time":"10:15 · 28 Mar 2026","title":"BBCA cetak laba rekor","stocks":["BBCA"],"sentiment":"bullish","impact_pct":2.5,"category":"earnings","detail":"Detail berita"}]`;
     const resp=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',max_tokens:2000,
-        tools:[{type:'web_search_20250305',name:'web_search'}],
-        messages:[{role:'user',content:prompt}]
-      })
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})
     });
     if(resp.ok){
       const data=await resp.json();
       const txt=data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
       const match=txt.match(/\[[\s\S]*?\]/);
-      if(match){
-        try{const news=JSON.parse(match[0]);renderNewsAI(news);return;}catch(e){}
-      }
+      if(match){try{renderNewsAI(JSON.parse(match[0]));return;}catch(e){}}
     }
     renderNewsAIFallback();
   }catch(e){renderNewsAIFallback();}
 }
-
 function renderNewsAI(news){
   const el=document.getElementById('newsAiContent');if(!el)return;
-  el.innerHTML=`
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;">
-      <div class="data-pill live"><div class="dot"></div>AI News Analysis — Diperbarui ${new Date().toLocaleTimeString('id-ID')}</div>
-    </div>
-    <div class="ai-news-grid">
-      ${news.map(n=>{
-        const isBull=n.sentiment==='bullish',isBear=n.sentiment==='bearish';
-        const impactColor=isBull?'var(--green)':isBear?'var(--red)':'var(--gold)';
-        return `<div class="ai-news-card" onclick="showToast('info','📰 ${n.category?.toUpperCase()||'NEWS'}','${n.detail||n.title}')">
-          <div class="ain-time">🕐 ${n.time}</div>
-          <div class="ain-title">${n.title}</div>
-          <div class="ain-impact">
-            ${(n.stocks||[]).map(s=>`<span class="ain-sym ${n.sentiment==='bullish'?'bull':n.sentiment==='bearish'?'bear':'neut'}">${s}</span>`).join('')}
-            <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:${impactColor};font-weight:700;margin-left:auto;">${isBull?'+':''}${n.impact_pct?.toFixed(1)||'?'}%</span>
-          </div>
-          <div style="font-size:8.5px;color:var(--txt3);margin-top:4px;">${n.detail||''}</div>
-        </div>`;}).join('')}
-    </div>
-    <div style="margin-top:9px;font-size:8.5px;color:var(--txt3);font-family:'JetBrains Mono',monospace;">⚠ Analisis AI berdasarkan berita terkini. Bukan saran investasi. Lakukan riset mandiri.</div>`;
+  el.innerHTML=`<div style="display:flex;align-items:center;margin-bottom:8px;"><div class="data-pill live"><div class="dot"></div>AI News — ${new Date().toLocaleTimeString('id-ID')}</div></div>
+  <div class="ai-news-grid">${news.map(n=>{
+    const isBull=n.sentiment==='bullish',isBear=n.sentiment==='bearish';
+    const impactColor=isBull?'var(--green)':isBear?'var(--red)':'var(--gold)';
+    return `<div class="ai-news-card" onclick="showToast('info','📰 ${n.category?.toUpperCase()||'NEWS'}','${n.detail||n.title}')">
+      <div class="ain-time">🕐 ${n.time}</div>
+      <div class="ain-title">${n.title}</div>
+      <div class="ain-impact">
+        ${(n.stocks||[]).map(s=>`<span class="ain-sym ${n.sentiment==='bullish'?'bull':n.sentiment==='bearish'?'bear':'neut'}">${s}</span>`).join('')}
+        <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:${impactColor};font-weight:700;margin-left:auto;">${isBull?'+':''}${n.impact_pct?.toFixed(1)||'?'}%</span>
+      </div>
+      <div style="font-size:8.5px;color:var(--txt3);margin-top:4px;">${n.detail||''}</div>
+    </div>`;}).join('')}</div>
+  <div style="margin-top:9px;font-size:8.5px;color:var(--txt3);">⚠ Analisis AI. Bukan saran investasi. Lakukan riset mandiri.</div>`;
 }
-
 function renderNewsAIFallback(){
-  const news=[
-    {time:'10:15 · 28 Mar 2026',title:'BBCA cetak laba rekor Q4 2025 Rp 62.7T (+13.8% YoY), kredit tumbuh 15%',stocks:['BBCA'],sentiment:'bullish',impact_pct:2.5,detail:'Laba bersih melampaui ekspektasi. Golden cross terkonfirmasi.'},
-    {time:'09:30 · 28 Mar 2026',title:'BI pertahankan rate 5.50%, Rupiah stabil Rp 16.200/USD',stocks:['BBCA','BMRI','BBRI'],sentiment:'neutral',impact_pct:0.8,detail:'Sesuai konsensus pasar. Mendukung stabilitas sektor perbankan.'},
-    {time:'08:45 · 28 Mar 2026',title:'BREN terima insentif EBT Rp 4.2T dari pemerintah, kapasitas naik 3x',stocks:['BREN'],sentiment:'bullish',impact_pct:3.8,detail:'Katalis besar jangka menengah. PE premium justified.'},
-    {time:'14:00 · 27 Mar 2026',title:'BNBR Bakrie Brothers restrukturisasi utang dan divestasi aset',stocks:['BNBR','BUMI'],sentiment:'bullish',impact_pct:5.2,detail:'Volume perdagangan naik 3x. Aksi korporasi disambut positif.'},
-    {time:'11:00 · 27 Mar 2026',title:'Ekspor batu bara naik 8.4% YoY, ADRO dan PTBA diuntungkan',stocks:['ADRO','PTBA'],sentiment:'bullish',impact_pct:2.1,detail:'Harga batu bara global stabil di USD 132/ton.'},
-    {time:'09:00 · 27 Mar 2026',title:'GOTO masih rugi Q4 meski revenue tumbuh 22% YoY',stocks:['GOTO'],sentiment:'bearish',impact_pct:-2.8,detail:'Loss menyempit namun profitabilitas masih jadi concern utama.'}
-  ];
-  renderNewsAI(news);
+  renderNewsAI([
+    {time:'10:15 · 28 Mar 2026',title:'BBCA cetak laba rekor Q4 2025 Rp 62.7T (+13.8% YoY)',stocks:['BBCA'],sentiment:'bullish',impact_pct:2.5,detail:'Laba bersih melampaui ekspektasi.'},
+    {time:'09:30 · 28 Mar 2026',title:'BI pertahankan rate 5.50%, Rupiah stabil Rp 16.200/USD',stocks:['BBCA','BMRI','BBRI'],sentiment:'neutral',impact_pct:0.8,detail:'Sesuai konsensus pasar.'},
+    {time:'08:45 · 28 Mar 2026',title:'BREN terima insentif EBT Rp 4.2T dari pemerintah',stocks:['BREN'],sentiment:'bullish',impact_pct:3.8,detail:'Katalis besar jangka menengah.'},
+    {time:'14:00 · 27 Mar 2026',title:'BNBR Bakrie Brothers restrukturisasi utang dan divestasi aset',stocks:['BNBR','BUMI'],sentiment:'bullish',impact_pct:5.2,detail:'Volume perdagangan naik 3x.'},
+    {time:'11:00 · 27 Mar 2026',title:'Ekspor batu bara naik 8.4% YoY, ADRO dan PTBA diuntungkan',stocks:['ADRO','PTBA'],sentiment:'bullish',impact_pct:2.1,detail:'Harga batu bara global stabil.'},
+    {time:'09:00 · 27 Mar 2026',title:'GOTO masih rugi Q4 meski revenue tumbuh 22% YoY',stocks:['GOTO'],sentiment:'bearish',impact_pct:-2.8,detail:'Loss menyempit namun profitabilitas masih jadi concern.'}
+  ]);
 }
 
 // ─── SECTION NAV ───
@@ -1669,27 +1830,36 @@ function selSym(btn,sym){
   ST.sym=sym;
   if(!ST.chartData[sym]){const beta=FUND[sym]?.beta||1;ST.chartData[sym]=genCandles(ST.prices[sym]||BASE[sym],90,.011*beta);}
   updatePriceHdr(sym);updateAI(sym);updateInd();updateFund(sym);updateAnalPanel(sym);buildFibRows(sym);drawChart();
+  updateChartHeaderInfo(sym);
   const op=document.getElementById('orderPrice'),price=ST.prices[sym]||BASE[sym];
-  if(op)op.value=price;
+  if(op){op.value=price;}
   const sl=document.getElementById('slPrice'),tp=document.getElementById('tpPrice');
   if(sl)sl.value=Math.round(price*.97);if(tp)tp.value=Math.round(price*1.05);calcRisk();
 }
 function selTF(btn,tf){
   document.querySelectorAll('.tf-pill').forEach(b=>b.classList.remove('active'));btn.classList.add('active');ST.tf=tf;
-  const n={'1M':85,'5M':72,'15M':62,'1H':55,'1D':50,'1W':45}[tf]||72;
+  const n={'1M':85,'5M':72,'15M':62,'1H':55,'1D':90,'1W':45}[tf]||72;
   const v={'1M':.015,'5M':.013,'15M':.012,'1H':.011,'1D':.010,'1W':.009}[tf]||.013;
   const beta=FUND[ST.sym]?.beta||1;
-  ST.chartData[ST.sym]=genCandles(ST.prices[ST.sym]||BASE[ST.sym],n,v*beta);drawChart();
+  ST.chartData[ST.sym]=genCandles(ST.prices[ST.sym]||BASE[ST.sym],n,v*beta);
+  drawChart();
+  // Update sym label with TF
+  const phsym=document.getElementById('ph-sym');if(phsym)phsym.textContent=ST.sym+' / IDX · '+tf;
 }
 function selAnalSym(btn,sym){
-  document.querySelectorAll('#sec-analytics .sym-pill').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  document.querySelectorAll('#analSymPills .sym-pill').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
   ST.sym=sym;if(!ST.chartData[sym])ST.chartData[sym]=genCandles(ST.prices[sym]||BASE[sym],90);
-  updateAnalPanel(sym);updateInd();buildFibRows(sym);drawChart('analyticsCanvas');
+  updateAnalPanel(sym);updateInd();buildFibRows(sym);drawChart('analyticsCanvas');updateChartHeaderInfo(sym);
 }
 function togInd(type,btn){
   const km={ma:'showMA',bb:'showBB',vol:'showVol',ema:'showEMA',vwap:'showVWAP',fib:'showFib'};
-  const key=km[type.toLowerCase()]||('show'+type.charAt(0).toUpperCase()+type.slice(1));
+  const key=km[type.toLowerCase()]||'show'+type.charAt(0).toUpperCase()+type.slice(1);
   ST[key]=!ST[key];btn.classList.toggle('on',ST[key]);drawChart();
+}
+function atogInd(type,btn){
+  const km={ma:'analShowMA',bb:'analShowBB',fib:'analShowFib',vwap:'analShowVWAP'};
+  const key=km[type.toLowerCase()];if(!key)return;
+  ST[key]=!ST[key];btn.classList.toggle('on',ST[key]);drawChart('analyticsCanvas');
 }
 
 // ─── ORDER ───
@@ -1714,7 +1884,7 @@ function calcRisk(){
   setEl('slHint',slPct+'%');setEl('tpHint',(+tpPct>0?'+':'')+tpPct+'%');
 }
 function execOrder(){
-  if(!ST.isOpen){showToast('error','Pasar Tutup','Order hanya dapat dilakukan saat IDX buka (09:00–11:30 & 13:30–15:00 WIB hari kerja).');return;}
+  if(!ST.isOpen){showToast('error','Pasar Tutup','Order hanya saat IDX buka (09:00–11:30 & 13:30–15:00 WIB hari kerja).');return;}
   const price=+(document.getElementById('orderPrice')?.value)||0;
   const lot=+(document.getElementById('orderLot')?.value)||0;
   const sl=+(document.getElementById('slPrice')?.value)||0;
@@ -1723,7 +1893,7 @@ function execOrder(){
   const now=new Date();
   const trade={date:now.toLocaleDateString('id-ID'),time:now.toLocaleTimeString('id-ID'),sym:ST.sym,side:ST.side.toUpperCase(),lot,price:Math.round(price),total:lot*100*price,sl:Math.round(sl),tp:Math.round(tp),pnl:0,status:'OPEN',id:Date.now()};
   ST.trades.unshift(trade);updateHistTable();updateHistStats();
-  showToast('success',`Order ${ST.side.toUpperCase()} Berhasil!`,`${ST.side.toUpperCase()} ${lot} lot ${ST.sym} @ Rp ${fmt(price)} | SL: ${fmt(sl)} | TP: ${fmt(tp)}`);
+  showToast('success',`Order ${ST.side.toUpperCase()} Berhasil!`,`${ST.side.toUpperCase()} ${lot} lot ${ST.sym} @ Rp ${fmt(price)}`);
 }
 
 // ─── PORTFOLIO ───
@@ -1764,7 +1934,7 @@ function miniLine(isUp){let pts='',y=isUp?14:4;for(let i=0;i<=8;i++){const x=i*5
 // ─── SCREENER ───
 let scrData=[];
 function buildScr(){
-  scrData=Object.keys(BASE).map(sym=>{
+  scrData=ALL_SYMS.map(sym=>{
     const price=ST.prices[sym]||BASE[sym],open=ST.opens[sym]||price,pct=(price-open)/open*100;
     const f=FUND[sym]||{};
     const data=ST.chartData[sym],cl=data?data.map(d=>d.c):[];
@@ -1815,7 +1985,7 @@ function filterScr(){
 
 // ─── HISTORY ───
 function buildHist(){
-  const syms=['BBCA','BMRI','BBRI','TLKM','BREN','BNBR','ADRO','GOTO','PTBA','ANTM'];
+  const syms=ALL_SYMS.slice(0,10);
   for(let i=0;i<22;i++){
     const sym=syms[i%syms.length],price=Math.round((BASE[sym]||100)*(0.96+Math.random()*.08)),lot=[5,10,15,20,25][i%5];
     const side=i%3===0?'SELL':'BUY',status=i<4?'OPEN':'CLOSED',sl=Math.round(price*.97),tp=Math.round(price*1.05);
@@ -1847,7 +2017,7 @@ function exportHist(){
   let csv='Tanggal,Jam,Saham,Aksi,Lot,Harga,Total,SL,TP,PnL,Status\n';
   ST.trades.forEach(t=>csv+=`${t.date},${t.time||''},${t.sym},${t.side},${t.lot},${t.price},${t.total},${t.sl||''},${t.tp||''},${t.pnl},${t.status}\n`);
   const blob=new Blob([csv],{type:'text/csv'}),url=URL.createObjectURL(blob),a=document.createElement('a');
-  a.href=url;a.download='nexustrade_v4_history.csv';a.click();URL.revokeObjectURL(url);
+  a.href=url;a.download='nexustrade_v5_history.csv';a.click();URL.revokeObjectURL(url);
   showToast('success','Export CSV','File riwayat berhasil diunduh.');
 }
 
