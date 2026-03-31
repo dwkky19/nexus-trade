@@ -937,10 +937,10 @@ function getMarketStatus(){
 
 // ─── DATA — All stocks from screener ───
 const BASE={
-  BBCA:9450,BMRI:7100,BBRI:4620,TLKM:3020,ASII:4980,
+  BBCA:6475,BMRI:4730,BBRI:3345,TLKM:3020,ASII:4980,
   GOTO:65,UNVR:2150,ICBP:10800,KLBF:1640,INDF:6950,
   BREN:11200,TPIA:3850,SMGR:3800,PTBA:3100,MTEL:820,
-  ADRO:3650,ANTM:1480,BBTN:1050,BNBR:162,BUMI:112,
+  ADRO:3650,ANTM:1480,BBTN:1050,BNBR:104,BUMI:120,
   ENRG:98,BRPT:1240,HRUM:1580,MDKA:1920,SIDO:780,
   INCO:3850,TINS:1180,WSKT:182,WIKA:256
 };
@@ -1107,41 +1107,41 @@ function startLive(){
   },1400);
 }
 
-// ─── FETCH REAL PRICES (Simulated Seamless Fallback) ───
-async function fetchAllData(){
-  const btn=document.getElementById('liveBtn');
-  if(btn)btn.classList.add('loading');
-  setEl('liveTxt','Fetching...');
-  try{
-    const syms='BBCA,BMRI,BBRI,TLKM,ASII,GOTO,BREN,BNBR,ADRO,PTBA,ANTM,INDF,UNVR,IHSG';
-    const prompt=`Search web for current/latest IDX Indonesia stock prices March 2026 for: ${syms}. Use Yahoo Finance, Investing.com, or stockbit.com. Return ONLY valid JSON (no markdown): {"IHSG":{"price":7482,"pct":0.42},"BBCA":{"price":9450,"pct":0.53},"BMRI":{"price":7100,"pct":0.71},"BBRI":{"price":4620,"pct":0.43},"TLKM":{"price":3020,"pct":-0.33},"ASII":{"price":4980,"pct":0.20},"GOTO":{"price":65,"pct":-1.52},"BREN":{"price":11200,"pct":1.82},"BNBR":{"price":162,"pct":4.52},"ADRO":{"price":3650,"pct":-0.41},"PTBA":{"price":3100,"pct":0.65},"ANTM":{"price":1480,"pct":1.22},"INDF":{"price":6950,"pct":0.14},"UNVR":{"price":2150,"pct":-0.23}}`;
+// Ganti fungsi fetchAllData() lama dengan ini
+async function fetchAllData() {
+  const btn = document.getElementById('liveBtn');
+  if (btn) btn.classList.add('loading');
+  setEl('liveTxt', 'Fetching API...');
+
+  try {
+    // PERHATIAN: Di sinilah Anda memasukkan URL Backend Server Anda sendiri.
+    // Contoh jika server Anda berjalan di localhost:
+    // const apiUrl = 'http://localhost:3000/api/idx-live';
     
-    // Attempting API Call (simulating a seamless failure since we don't have the API key in pure HTML)
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',max_tokens:1500,
-        tools:[{type:'web_search_20250305',name:'web_search'}],
-        messages:[{role:'user',content:prompt}]
-      })
-    });
+    const apiUrl = 'URL_BACKEND_ANDA_DI_SINI'; 
+    const response = await fetch(apiUrl);
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
     
-    if(resp.ok){
-      const data=await resp.json();
-      const txt=data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
-      const match=txt.match(/\{[\s\S]*\}/);
-      if(match){
-        try{const parsed=JSON.parse(match[0]);applyReal(parsed);setDataSource(true);showToast('success','✅ Data Real IDX Dimuat!','Harga terkini dari IDX berhasil diperbarui.');
-        }catch(e){throw new Error('Parse error');}
-      }else throw new Error('No match');
-    }else throw new Error('API failed');
-  }catch(e){
-    // Simulated Delay for UX
+    // Asumsi Backend Anda mengirimkan format JSON:
+    // { "BBCA": { "price": 9500, "pct": 1.2 }, "GOTO": { "price": 60, "pct": -2.1 } }
+    applyReal(data);
+    setDataSource(true);
+    showToast('success', '✅ Data Tersinkronisasi', 'Harga saham berhasil diperbarui dari server.');
+
+  } catch (error) {
+    console.error("Gagal menarik data live:", error);
+    
+    // Simulasi delay UX sebelum jatuh ke mode simulasi lokal
     setTimeout(() => {
       setDataSource(false);
-      showToast('info','Mode Simulasi','Data real-time API tidak tersedia. Simulasi algoritma berjalan lancar.');
-      if(btn)btn.classList.remove('loading');
-      setEl('liveTxt','Live Data');
+      showToast('warning', 'Mode Simulasi Aktif', 'Tidak dapat terhubung ke server API. Menggunakan data simulasi algoritma.');
+      if (btn) btn.classList.remove('loading');
+      setEl('liveTxt', 'Live Data');
     }, 1200);
   }
 }
