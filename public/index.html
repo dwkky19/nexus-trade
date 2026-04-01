@@ -1043,11 +1043,17 @@
     updatePortfolio();updateInd();updateFund('BBCA');updateAnalPanel('BBCA');
     buildFibRows('BBCA');updateChartHeaderInfo('BBCA');
     
-    // Start simulation loops
+    // Start simulation loops as fallback
     ST.mktInt=setInterval(updateMktStatus,15000);
     startLive();
     setTimeout(()=>animConf(82),600);
     updateDateInfo();
+
+    // Connect to backend WebSocket for real-time data
+    initWebSocket();
+
+    // Auto-fetch news from backend on load
+    setTimeout(()=>fetchNewsAI(),1500);
   });
 
   // ─── BUILD SYMBOL PILLS (ALL stocks) ───
@@ -1085,11 +1091,13 @@
     updateDateInfo();
   }
 
-  // ─── LIVE SIMULATION ───
+  // ─── LIVE SIMULATION (fallback when WebSocket not connected) ───
   function startLive(){
     if(ST.liveInt)clearInterval(ST.liveInt);
     ST.liveInt=setInterval(()=>{
       updateMktStatus();
+      // Only simulate if WebSocket is NOT connected (fallback mode)
+      if(ST.wsConnected) return;
       if(!ST.isOpen)return;
       ALL_SYMS.forEach(sym=>{
         const bp=BASE[sym],beta=FUND[sym]?.beta||1,vol=0.0015*beta;
@@ -1107,57 +1115,193 @@
     },1400);
   }
 
-  // Ganti fungsi fetchAllData() lama dengan ini
+  // ─── WEBSOCKET CLIENT — Real-time data from backend ───
+  ST.wsConnected=false;
+  ST.wsReconnectTimer=null;
+  ST.ws=null;
+
+  function initWebSocket(){
+    const protocol=location.protocol==='https:'?'wss:':'ws:';
+    const wsUrl=`${protocol}//${location.host}/ws`;
+    console.log('[WS] Connecting to',wsUrl);
+    try{
+      ST.ws=new WebSocket(wsUrl);
+      ST.ws.onopen=()=>{
+        console.log('[WS] Connected!');
+        ST.wsConnected=true;
+        setDataSource(true);
+        showToast('success','🔌 Terhubung ke Server','Data real-time IDX aktif via WebSocket.');
+      };
+      ST.ws.onmessage=(ev)=>{
+        try{
+          const msg=JSON.parse(ev.data);
+          handleWSMessage(msg);
+        }catch(e){console.error('[WS] Parse error:',e);}
+      };
+      ST.ws.onclose=()=>{
+        console.log('[WS] Disconnected');
+        ST.wsConnected=false;
+        setDataSource(false);
+        // Auto-reconnect after 5 seconds
+        if(!ST.wsReconnectTimer){
+          ST.wsReconnectTimer=setTimeout(()=>{ST.wsReconnectTimer=null;initWebSocket();},5000);
+        }
+      };
+      ST.ws.onerror=(err)=>{
+        console.error('[WS] Error:',err);
+        ST.wsConnected=false;
+      };
+    }catch(e){
+      console.error('[WS] Failed to connect:',e);
+      ST.wsConnected=false;
+      setDataSource(false);
+    }
+  }
+
+  function handleWSMessage(msg){
+    const{type,data}=msg;
+    switch(type){
+      case 'init':
+        // Initial data load from server
+        if(data.prices&&Object.keys(data.prices).length>0){
+          applyReal(data.prices);
+          setDataSource(true);
+        }
+        if(data.market){
+          applyMarketStatus(data.market);
+        }
+        if(data.news&&data.news.length>0){
+          renderNewsAI(data.news);
+          updateSidebarNews(data.news);
+          updateTickerFromNews(data.news);
+        }
+        break;
+      case 'prices':
+        if(data&&Object.keys(data).length>0){
+          applyReal(data);
+        }
+        break;
+      case 'market':
+        if(data) applyMarketStatus(data);
+        break;
+      case 'news':
+        if(data&&data.length>0){
+          renderNewsAI(data);
+          updateSidebarNews(data);
+        }
+        break;
+      case 'ticker':
+        if(data&&data.length>0) updateTickerFromNews(data.map(t=>({title:t.text,sentiment:t.sentiment})));
+        break;
+    }
+  }
+
+  function applyMarketStatus(m){
+    ST.isOpen=m.isOpen;
+    const dot=document.getElementById('mktDot'),lbl=document.getElementById('mktLbl'),tm=document.getElementById('mktTime');
+    if(dot)dot.className='mkt-dot '+(m.isOpen?'open':'closed');
+    if(lbl){lbl.className='mkt-lbl '+(m.isOpen?'open':'closed');lbl.textContent=m.isOpen?'Pasar Buka':'Pasar Tutup';}
+    if(tm)tm.textContent=(m.time||'')+(m.sess?' · '+m.sess:'');
+    const ov=document.getElementById('chartClosedOv');if(ov)ov.style.display=m.isOpen?'none':'flex';
+    const execBtn=document.getElementById('execBtn'),badge=document.getElementById('mktClosedBadge');
+    if(execBtn)execBtn.disabled=!m.isOpen;
+    if(badge)badge.style.display=m.isOpen?'none':'flex';
+  }
+
+  function updateSidebarNews(newsArr){
+    const container=document.querySelector('#rpanel .rp-sec:last-child');
+    if(!container||!newsArr||newsArr.length===0)return;
+    const titleEl=container.querySelector('.rp-ttl');
+    let html=titleEl?titleEl.outerHTML:'';
+    newsArr.slice(0,5).forEach(n=>{
+      const sentCls=n.sentiment==='bullish'?'bull':n.sentiment==='bearish'?'bear':'neut';
+      const sentTxt=n.sentiment==='bullish'?'BULLISH':n.sentiment==='bearish'?'BEARISH':'NETRAL';
+      html+=`<div class="news-item"><div class="ntime">${n.time||''}</div><div class="nhead">${escHtml(n.title||'')}</div><div><span class="ntag ${sentCls}">${sentTxt}</span>${(n.stocks||[]).map(s=>'<span class="ntag '+sentCls+'">'+s+'</span>').join('')}</div></div>`;
+    });
+    container.innerHTML=html;
+  }
+
+  function updateTickerFromNews(newsArr){
+    const ticker=document.getElementById('newsTicker');
+    if(!ticker||!newsArr||newsArr.length===0)return;
+    const items=newsArr.slice(0,8);
+    // Double items for seamless scrolling
+    const allItems=[...items,...items];
+    ticker.innerHTML=allItems.map(n=>{
+      const cls=n.sentiment==='bullish'?'bull':n.sentiment==='bearish'?'bear':'';
+      return `<div class="news-ticker-item ${cls}">${escHtml(n.title||'')}</div>`;
+    }).join('');
+  }
+
+  function escHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+  // ─── FETCH ALL DATA — from backend API ───
   async function fetchAllData() {
     const btn = document.getElementById('liveBtn');
     if (btn) btn.classList.add('loading');
     setEl('liveTxt', 'Fetching API...');
 
     try {
-      // PERHATIAN: Di sinilah Anda memasukkan URL Backend Server Anda sendiri.
-      // Contoh jika server Anda berjalan di localhost:
-      // const apiUrl = 'http://localhost:3000/api/idx-live';
-      
-      const apiUrl = 'URL_BACKEND_ANDA_DI_SINI'; 
-      const response = await fetch(apiUrl);
+      const response = await fetch('/api/stocks/prices');
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const result = await response.json();
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+      if(result.success && result.data){
+        applyReal(result.data);
+        setDataSource(true);
+        showToast('success', '✅ Data Tersinkronisasi', `${Object.keys(result.data).length} saham diperbarui dari Yahoo Finance.`);
+      } else {
+        throw new Error(result.error||'No data');
       }
-
-      const data = await response.json();
-      
-      // Asumsi Backend Anda mengirimkan format JSON:
-      // { "BBCA": { "price": 9500, "pct": 1.2 }, "GOTO": { "price": 60, "pct": -2.1 } }
-      applyReal(data);
-      setDataSource(true);
-      showToast('success', '✅ Data Tersinkronisasi', 'Harga saham berhasil diperbarui dari server.');
-
+      if(btn) btn.classList.remove('loading');
+      setEl('liveTxt','Live Data');
     } catch (error) {
-      console.error("Gagal menarik data live:", error);
-      
-      // Simulasi delay UX sebelum jatuh ke mode simulasi lokal
+      console.error('Gagal menarik data live:', error);
       setTimeout(() => {
         setDataSource(false);
-        showToast('warning', 'Mode Simulasi Aktif', 'Tidak dapat terhubung ke server API. Menggunakan data simulasi algoritma.');
+        showToast('warning', 'Mode Simulasi Aktif', 'Tidak dapat terhubung ke server. Menggunakan data simulasi.');
         if (btn) btn.classList.remove('loading');
         setEl('liveTxt', 'Live Data');
-      }, 1200);
+      }, 800);
     }
   }
 
   function applyReal(parsed){
     Object.keys(parsed).forEach(sym=>{
       const d=parsed[sym];
-      if(sym==='IHSG'){ST.ihsg.price=d.price||ST.ihsg.price;if(d.pct!==undefined)ST.ihsg.open=Math.round(d.price/(1+d.pct/100));}
+      if(sym==='IHSG'){
+        ST.ihsg.price=d.price||ST.ihsg.price;
+        if(d.open)ST.ihsg.open=d.open;
+        else if(d.pct!==undefined&&d.price)ST.ihsg.open=Math.round(d.price/(1+d.pct/100));
+        if(d.high)ST.ihsg.high=d.high;
+        if(d.low)ST.ihsg.low=d.low;
+      }
       else if(BASE[sym]){
-        if(d.price){ST.prices[sym]=d.price;if(d.pct!==undefined)ST.opens[sym]=Math.round(d.price/(1+d.pct/100));else ST.opens[sym]=ST.opens[sym]||d.price;ST.highs[sym]=d.price;ST.lows[sym]=d.price;}
+        if(d.price){
+          ST.prices[sym]=Math.round(d.price);
+          if(d.open)ST.opens[sym]=Math.round(d.open);
+          else if(d.pct!==undefined)ST.opens[sym]=Math.round(d.price/(1+d.pct/100));
+          else ST.opens[sym]=ST.opens[sym]||Math.round(d.price);
+          ST.highs[sym]=d.high?Math.round(d.high):Math.max(ST.highs[sym]||0,Math.round(d.price));
+          ST.lows[sym]=d.low?Math.round(d.low):Math.min(ST.lows[sym]||999999,Math.round(d.price));
+          // Update volume if available
+          if(d.volume)VOL[sym]=fmtVol(d.volume);
+          // Update fundamentals from Yahoo if available
+          if(d.trailingPE&&d.trailingPE>0&&FUND[sym])FUND[sym].pe=+d.trailingPE.toFixed(1);
+          if(d.dividendYield&&FUND[sym])FUND[sym].divY=+d.dividendYield.toFixed(1);
+          if(d.priceToBook&&FUND[sym])FUND[sym].pbv=+d.priceToBook.toFixed(1);
+          if(d.beta&&FUND[sym])FUND[sym].beta=+d.beta.toFixed(2);
+          if(d.fiftyTwoWeekHigh)W52[sym]={h:Math.round(d.fiftyTwoWeekHigh),l:Math.round(d.fiftyTwoWeekLow||W52[sym]?.l||d.price*.85)};
+          if(d.name&&NAMES)NAMES[sym]=d.name;
+        }
       }
     });
     updatePriceHdr(ST.sym);buildWatchlist();buildScr();updatePortfolio();updateIHSG();buildStratPanel();
     setEl('lastUpd','Update: '+new Date().toLocaleTimeString('id-ID'));
     updateChartHeaderInfo(ST.sym);
   }
+
+  function fmtVol(v){if(v>=1e9)return(v/1e9).toFixed(1)+'B';if(v>=1e6)return(v/1e6).toFixed(1)+'M';if(v>=1e3)return(v/1e3).toFixed(1)+'K';return v.toString();}
 
   function setDataSource(isReal){
     ST.isLive=isReal;
@@ -1166,7 +1310,7 @@
     if(txt)txt.textContent=isReal?'IDX Real-time':'Simulasi';
     const sp=document.getElementById('scrPill'),st=document.getElementById('scrUpdTxt');
     if(sp)sp.className='data-pill '+(isReal?'live':'sim');
-    if(st)st.textContent=isReal?'IDX Real-time Mar 2026':'Simulasi AI';
+    if(st)st.textContent=isReal?'IDX Real-time':'Simulasi AI';
   }
 
   // ─── IHSG ───
@@ -1774,54 +1918,53 @@
   // ─── NEWS AI ───
   async function fetchNewsAI(){
     const el=document.getElementById('newsAiContent');if(!el)return;
-    el.innerHTML='<div class="news-loading"><span class="spin" style="animation:spin .7s linear infinite;display:inline-block;">⟳</span> AI sedang mencari berita terkini IDX...</div>';
+    el.innerHTML='<div class="news-loading"><span class="spin" style="animation:spin .7s linear infinite;display:inline-block;">⟳</span> Mengambil berita terkini dari sumber IDX...</div>';
     try{
-      const prompt=`Search for latest Indonesian stock market (IDX/BEI) news March 2026. Find 6-8 significant news. Return ONLY valid JSON array: [{"time":"10:15 · 28 Mar 2026","title":"BBCA cetak laba rekor","stocks":["BBCA"],"sentiment":"bullish","impact_pct":2.5,"category":"earnings","detail":"Detail berita"}]`;
-      
-      // Simulate API fallback gracefully
-      const resp=await fetch('https://api.anthropic.com/v1/messages',{
-        method:'POST',headers:{'Content-Type':'application/json'},
-        body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,tools:[{type:'web_search_20250305',name:'web_search'}],messages:[{role:'user',content:prompt}]})
-      });
-      
-      if(resp.ok){
-        const data=await resp.json();
-        const txt=data.content.filter(b=>b.type==='text').map(b=>b.text).join('');
-        const match=txt.match(/\[[\s\S]*?\]/);
-        if(match){try{renderNewsAI(JSON.parse(match[0]));return;}catch(e){throw new Error('Parse error');}}
+      const resp=await fetch('/api/news');
+      if(!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      const result=await resp.json();
+      if(result.success && result.data && result.data.length>0){
+        renderNewsAI(result.data);
+        updateSidebarNews(result.data);
+        updateTickerFromNews(result.data);
+        showToast('success','📰 Berita Diperbarui',`${result.data.length} berita dari sumber terpercaya.`);
+      } else {
+        throw new Error('No news data');
       }
-      throw new Error('API failed');
     }catch(e){
-      setTimeout(() => {
-        renderNewsAIFallback();
-      }, 1500); // Simulated delay
+      console.error('[News] Fetch error:',e);
+      setTimeout(()=>{renderNewsAIFallback();},800);
     }
   }
   function renderNewsAI(news){
     const el=document.getElementById('newsAiContent');if(!el)return;
-    el.innerHTML=`<div style="display:flex;align-items:center;margin-bottom:8px;"><div class="data-pill live"><div class="dot"></div>AI News — ${new Date().toLocaleTimeString('id-ID')}</div></div>
+    const srcLabel=ST.wsConnected?'Live News':'Cached News';
+    el.innerHTML=`<div style="display:flex;align-items:center;margin-bottom:8px;"><div class="data-pill live"><div class="dot"></div>${srcLabel} — ${new Date().toLocaleTimeString('id-ID')}</div></div>
     <div class="ai-news-grid">${news.map(n=>{
       const isBull=n.sentiment==='bullish',isBear=n.sentiment==='bearish';
       const impactColor=isBull?'var(--green)':isBear?'var(--red)':'var(--gold)';
-      return `<div class="ai-news-card" onclick="showToast('info','📰 ${n.category?.toUpperCase()||'NEWS'}','${n.detail||n.title}')">
-        <div class="ain-time">🕐 ${n.time}</div>
-        <div class="ain-title">${n.title}</div>
+      const newsUrl=n.link||'#';
+      const source=n.source||'IDX';
+      const category=n.category||'market';
+      return `<div class="ai-news-card" onclick="${n.link?`window.open('${n.link}','_blank')`:`showToast('info','📰 ${category.toUpperCase()}','${escHtml(n.detail||n.title)}')`}">
+        <div class="ain-time">🕐 ${n.time} <span style="color:var(--cyan);font-size:7.5px;margin-left:4px;">${source}</span></div>
+        <div class="ain-title">${escHtml(n.title)}</div>
         <div class="ain-impact">
           ${(n.stocks||[]).map(s=>`<span class="ain-sym ${n.sentiment==='bullish'?'bull':n.sentiment==='bearish'?'bear':'neut'}">${s}</span>`).join('')}
-          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:${impactColor};font-weight:700;margin-left:auto;">${isBull?'+':''}${n.impact_pct?.toFixed(1)||'?'}%</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:${impactColor};font-weight:700;margin-left:auto;">${isBull?'+':''}${n.impact_pct?.toFixed?n.impact_pct.toFixed(1):n.impact_pct||'?'}%</span>
         </div>
-        <div style="font-size:8.5px;color:var(--txt3);margin-top:4px;">${n.detail||''}</div>
+        <div style="font-size:8.5px;color:var(--txt3);margin-top:4px;">${escHtml(n.detail||'')}</div>
       </div>`;}).join('')}</div>
-    <div style="margin-top:9px;font-size:8.5px;color:var(--txt3);">⚠ Analisis AI. Bukan saran investasi. Lakukan riset mandiri.</div>`;
+    <div style="margin-top:9px;font-size:8.5px;color:var(--txt3);">📡 Sumber: CNBC Indonesia, Bisnis.com, Kontan, Tempo · Analisis sentimen otomatis · Bukan saran investasi.</div>`;
   }
   function renderNewsAIFallback(){
     renderNewsAI([
-      {time:'10:15 · 28 Mar 2026',title:'BBCA cetak laba rekor Q4 2025 Rp 62.7T (+13.8% YoY)',stocks:['BBCA'],sentiment:'bullish',impact_pct:2.5,detail:'Laba bersih melampaui ekspektasi analis.'},
-      {time:'09:30 · 28 Mar 2026',title:'BI pertahankan rate 5.50%, Rupiah stabil Rp 16.200/USD',stocks:['BBCA','BMRI','BBRI'],sentiment:'neutral',impact_pct:0.8,detail:'Sesuai dengan konsensus pasar secara keseluruhan.'},
-      {time:'08:45 · 28 Mar 2026',title:'BREN terima insentif EBT Rp 4.2T dari pemerintah',stocks:['BREN'],sentiment:'bullish',impact_pct:3.8,detail:'Katalis besar jangka menengah bagi emiten energi hijau.'},
-      {time:'14:00 · 27 Mar 2026',title:'BNBR Bakrie Brothers restrukturisasi utang dan divestasi aset',stocks:['BNBR','BUMI'],sentiment:'bullish',impact_pct:5.2,detail:'Volume perdagangan melonjak, menarik spekulasi pelaku pasar.'},
-      {time:'11:00 · 27 Mar 2026',title:'Ekspor batu bara naik 8.4% YoY, ADRO dan PTBA diuntungkan',stocks:['ADRO','PTBA'],sentiment:'bullish',impact_pct:2.1,detail:'Tingginya permintaan global mempertahankan momentum saham batu bara.'},
-      {time:'09:00 · 27 Mar 2026',title:'GOTO masih rugi Q4 meski revenue tumbuh 22% YoY',stocks:['GOTO'],sentiment:'bearish',impact_pct:-2.8,detail:'Kinerja *bottom-line* belum memuaskan meski gross revenue naik.'}
+      {time:'10:15 · 28 Mar 2026',title:'BBCA cetak laba rekor Q4 2025 Rp 62.7T (+13.8% YoY)',stocks:['BBCA'],sentiment:'bullish',impact_pct:2.5,detail:'Laba bersih melampaui ekspektasi analis.',source:'CNBC ID'},
+      {time:'09:30 · 28 Mar 2026',title:'BI pertahankan rate 5.50%, Rupiah stabil Rp 16.200/USD',stocks:['BBCA','BMRI','BBRI'],sentiment:'neutral',impact_pct:0.8,detail:'Sesuai dengan konsensus pasar secara keseluruhan.',source:'Bisnis'},
+      {time:'08:45 · 28 Mar 2026',title:'BREN terima insentif EBT Rp 4.2T dari pemerintah',stocks:['BREN'],sentiment:'bullish',impact_pct:3.8,detail:'Katalis besar jangka menengah bagi emiten energi hijau.',source:'Kontan'},
+      {time:'14:00 · 27 Mar 2026',title:'BNBR Bakrie Brothers restrukturisasi utang dan divestasi aset',stocks:['BNBR','BUMI'],sentiment:'bullish',impact_pct:5.2,detail:'Volume perdagangan melonjak, menarik spekulasi pelaku pasar.',source:'CNBC ID'},
+      {time:'11:00 · 27 Mar 2026',title:'Ekspor batu bara naik 8.4% YoY, ADRO dan PTBA diuntungkan',stocks:['ADRO','PTBA'],sentiment:'bullish',impact_pct:2.1,detail:'Tingginya permintaan global mempertahankan momentum saham batu bara.',source:'Bisnis'},
+      {time:'09:00 · 27 Mar 2026',title:'GOTO masih rugi Q4 meski revenue tumbuh 22% YoY',stocks:['GOTO'],sentiment:'bearish',impact_pct:-2.8,detail:'Kinerja bottom-line belum memuaskan meski gross revenue naik.',source:'Kontan'}
     ]);
   }
 
@@ -1834,7 +1977,7 @@
     if(id==='dashboard')setTimeout(drawChart,40);
     if(id==='analytics'){setTimeout(()=>{drawChart('analyticsCanvas');updateAnalPanel(ST.sym);buildFibRows(ST.sym);},40);}
     if(id==='screener'){buildStratPanel();}
-    if(id==='news'){if(document.getElementById('newsAiContent')?.innerHTML.includes('Klik'))renderNewsAIFallback();}
+    if(id==='news'){fetchNewsAI();}
   }
   function sbClick(el,sec){document.querySelectorAll('.sb-it').forEach(i=>i.classList.remove('active'));el.classList.add('active');showSection(sec,null);}
 
@@ -2079,7 +2222,7 @@
 
   // ─── HELPERS ───
   function fmt(n){if(n===undefined||n===null||isNaN(n))return'—';return Math.round(n).toLocaleString('id-ID');}
-  function setEl(id,val){const el=document.getElementById(id);if(!el)return;if(typeof val==='string'&&val.includes('<'))el.innerHTML=val;else el.textContent=val;}
+  function setEl(id,val){const el=document.getElementById(id);if(!el)return;if(typeof val==='string'&&val.includes('<')&&val.includes('class='))el.innerHTML=val;else el.textContent=typeof val==='string'?val:String(val);}
   let rzTo;window.addEventListener('resize',()=>{clearTimeout(rzTo);rzTo=setTimeout(()=>{drawChart();const ac=document.getElementById('sec-analytics');if(ac?.classList.contains('active'))drawChart('analyticsCanvas');},140);});
   </script>
   </body>
