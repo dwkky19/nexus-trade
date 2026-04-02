@@ -13,13 +13,11 @@ const parser = new RssParser({
 
 // ─── RSS Feed Sources ───
 const FEEDS = [
-  { url: 'https://www.cnbcindonesia.com/market/rss', source: 'CNBC Indonesia', category: 'market' },
-  { url: 'https://www.cnbcindonesia.com/investment/rss', source: 'CNBC Indonesia', category: 'investment' },
-  { url: 'https://www.cnbcindonesia.com/news/rss', source: 'CNBC Indonesia', category: 'news' },
+  { url: 'https://www.antaranews.com/rss/bisnis.xml', source: 'Antara', category: 'business' },
+  { url: 'https://www.antaranews.com/rss/ekonomi-makro.xml', source: 'Antara', category: 'finance' },
   { url: 'https://rss.tempo.co/bisnis', source: 'Tempo', category: 'business' },
   { url: 'https://rss.tempo.co/nusa', source: 'Tempo', category: 'nusa' },
-  { url: 'https://www.liputan6.com/rss/bisnis', source: 'Liputan6', category: 'business' },
-  { url: 'https://feed.detik.com/finance', source: 'Detik Finance', category: 'finance' },
+  { url: 'https://feed.detik.com/finance', source: 'Detik Finance', category: 'finance' }
 ];
 
 // ─── Stock keywords for matching ───
