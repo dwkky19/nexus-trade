@@ -1,6 +1,6 @@
 /**
  * Market Service — IDX Market Hours & Status
- * Pasar IDX: Sesi 1 (09:00-11:30 WIB), Sesi 2 (13:30-15:00 WIB)
+ * Pasar IDX: Sesi 1 (09:00-11:30 WIB), Sesi 2 (13:30-16:00 WIB)
  */
 
 function getMarketStatus() {
@@ -16,7 +16,8 @@ function getMarketStatus() {
   
   const isWeekday = wibDay >= 1 && wibDay <= 5;
   const session1 = wibMin >= 540 && wibMin < 690;  // 09:00 - 11:30
-  const session2 = wibMin >= 810 && wibMin < 900;  // 13:30 - 15:00
+  // PERBAIKAN: 960 menit = jam 16:00
+  const session2 = wibMin >= 810 && wibMin < 960;  // 13:30 - 16:00
   const isOpen = isWeekday && (session1 || session2);
   
   const H = String(wibH).padStart(2, '0');

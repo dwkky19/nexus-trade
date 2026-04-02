@@ -70,7 +70,8 @@ const BEARISH_WORDS = [
 // ─── Cache ───
 let newsCache = [];
 let newsCacheTime = 0;
-const NEWS_CACHE_TTL = 300000; // 5 minutes
+// PERBAIKAN: Ubah TTL menjadi 2 menit agar berita lebih sering update
+const NEWS_CACHE_TTL = 120000; 
 
 /**
  * Analyze sentiment of a news title/content
@@ -141,7 +142,7 @@ async function fetchNews() {
       
       if (content && content.items) {
         content.items.slice(0, 10).forEach(item => {
-          const title = item.title || '';
+          const title = item.title ? item.title.trim() : '';
           const description = item.contentSnippet || item.content || '';
           const fullText = `${title} ${description}`;
           
@@ -149,20 +150,24 @@ async function fetchNews() {
           const stocks = findRelatedStocks(fullText);
           const impact = estimateImpact(sentiment, stocks);
           
-          // Parse date
+          // PERBAIKAN: Parsing tanggal yang lebih aman
           let pubDate;
-          try {
-            pubDate = item.pubDate ? new Date(item.pubDate) : new Date();
-          } catch {
-            pubDate = new Date();
+          const parsedTimestamp = Date.parse(item.pubDate);
+          if (!isNaN(parsedTimestamp)) {
+            pubDate = new Date(parsedTimestamp);
+          } else {
+            // Jika tanggal invalid, beri timestamp lama agar tidak muncul di paling atas
+            pubDate = new Date(0); 
           }
           
-          // Format time WIB
-          const wibDate = new Date(pubDate.getTime() + 7 * 3600000 - pubDate.getTimezoneOffset() * 60000);
-          const H = String(wibDate.getHours()).padStart(2, '0');
-          const M = String(wibDate.getMinutes()).padStart(2, '0');
+          // PERBAIKAN: Format waktu WIB yang akurat tanpa terpengaruh zona waktu server (menggunakan UTC)
+          const utcMs = pubDate.getTime();
+          const wibDate = new Date(utcMs + (7 * 3600000)); // Tambah 7 jam dari UTC
+          
+          const H = String(wibDate.getUTCHours()).padStart(2, '0');
+          const M = String(wibDate.getUTCMinutes()).padStart(2, '0');
           const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
-          const timeStr = `${H}:${M} · ${wibDate.getDate()} ${months[wibDate.getMonth()]} ${wibDate.getFullYear()}`;
+          const timeStr = `${H}:${M} · ${wibDate.getUTCDate()} ${months[wibDate.getUTCMonth()]} ${wibDate.getUTCFullYear()}`;
           
           allNews.push({
             time: timeStr,
@@ -174,7 +179,8 @@ async function fetchNews() {
             stocks,
             impact_pct: impact,
             link: item.link || '',
-            pubDate: pubDate.toISOString()
+            // Simpan timestamp asli untuk keperluan sorting
+            pubTimestamp: pubDate.getTime() 
           });
         });
       }
@@ -183,15 +189,22 @@ async function fetchNews() {
     }
   }
   
-  // Sort by date (newest first) and deduplicate
-  allNews.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+  // PERBAIKAN: Sorting menggunakan angka timestamp langsung (jauh lebih cepat dan akurat)
+  allNews.sort((a, b) => b.pubTimestamp - a.pubTimestamp);
   
-  // Deduplicate by title similarity
+  // PERBAIKAN: Deduplikasi menggunakan Link (URL) atau Judul Lengkap, bukan potongan 40 karakter
   const seen = new Set();
   const unique = allNews.filter(n => {
-    const key = n.title.substring(0, 40).toLowerCase();
-    if (seen.has(key)) return false;
-    seen.add(key);
+    const keyTitle = n.title.toLowerCase();
+    const keyLink = n.link;
+    
+    // Lewati jika judul atau link sudah ada di Set
+    if (seen.has(keyTitle) || (keyLink && seen.has(keyLink))) {
+      return false;
+    }
+    
+    seen.add(keyTitle);
+    if (keyLink) seen.add(keyLink);
     return true;
   });
   
